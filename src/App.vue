@@ -1,28 +1,75 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <router-view/>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import store from '../store'
+    import router from "../router";
+    import Vue from 'vue'
+    import BootstrapVue from 'bootstrap-vue'
+    import 'bootstrap/dist/css/bootstrap.css'
+    import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    Vue.use(BootstrapVue)
+
+    export default {
+        name: 'app',
+        router,
+        store,
+        components: {}
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    @font-face {
+        font-family: 'GT-America';
+        font-weight: normal;
+        src: url("../public/fonts/GT-America-Extended-Regular.OTF");
+    }
+
+    @font-face {
+        font-family: 'GT-America';
+        font-weight: bold;
+        src: url("../public/fonts/GT-America-Extended-Black.OTF");
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .carousel-control-next-icon {
+        background-image: url("../public/mainpage/Carousel/right.png") !important;
+        width: 31px;
+        height: 25px;
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url("../public/mainpage/Carousel/left.png") !important;
+        width: 31px;
+        height: 25px;
+    }
+
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+
+    }
+
+    #app {
+        font-family: 'GT-America', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: black;
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+    }
 </style>
