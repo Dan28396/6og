@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production'
 
-//TODO Переделать регистрацию
+
 export default new Vuex.Store({
     strict: debug,
     modules: {},
@@ -13,7 +13,7 @@ export default new Vuex.Store({
         items: [
             {
                 id: 1,
-                img: require('../public/mainpage/Carousel/Example.png'),
+                img: require('../public/item/item.png'),
                 path: '/item',
                 name: "6og Secure Hoodie Black",
                 price: 20,

@@ -17,6 +17,8 @@
 
                 </div>
                 <p class="item-description">{{items[0].description}}</p>
+                <img class="item-table" src="../../../public/item/table.png">
+                <button class="cart-button">ADD TO CART</button>
             </div>
         </section>
         <img class="romb" src="../../../public/mainpage/romb.png">
@@ -63,6 +65,13 @@
     .item-info {
         width: 70%;
         height: 70%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-table {
+        width: 90%;
+        align-self: flex-start;
     }
 
     .item-text {
@@ -75,6 +84,15 @@
         text-align: left;
     }
 
+    .cart-button {
+        background: black;
+        color: white;
+        width: 40%;
+        outline: none;
+        border: none;
+        margin: 30px 0 0 0;
+        padding: 7px 5px;
+    }
 
     .size-text {
         font-size: 40px;

@@ -3,6 +3,7 @@
         <b-carousel
                 id="carousel-1"
                 controls
+                :interval="9999999"
                 class="carousel"
         >
             <b-carousel-slide :key="item.id" v-for="(item) in items">
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+    //TODO Пофиксить большие изображения
     import {mapState} from 'vuex'
 
     export default {
@@ -41,6 +43,7 @@
         width: 100%;
         margin: auto;
     }
+
 
 
 </style>
