@@ -1,44 +1,64 @@
 <template>
-    <div class="modal-mask">
-        <aside class="cart-wrapper" v-click-outside="toggleCartModal">
-            <header class="cart-wrapper__header">
-                <p class="cart-title">Cart</p>
-                <button type="button" class="close" @click="toggleCartModal">
-                    <img src="../../../public/item/close.svg">
-                </button>
-            </header>
-            <section class="cart-wrapper__main">
-                <div class="cart-item">
-                    <img class="cart-item__img" src="../../../public/mainpage/Carousel/Example.png">
-                    <div class="cart-item__info">
-                        <div>
-                            <p class="cart-item__name">6og Secure Hoodie Black</p>
-                            <p class="cart-item__size">M</p>
-                            <p class="cart-item__price">$150</p>
-                        </div>
-
-                        <div class="cart-item__actions">
-                            <div class="cart-item__quantity-selector">
-                                <button class="cart-item__quantity-button">-</button>
-                                <input class="cart-item__quantity-input" min="1" max="9" maxlength="1">
-                                <button class="cart-item__quantity-button">+</button>
+    <div>
+        <transition name="slide">
+            <aside class="cart-wrapper" v-click-outside="toggle" v-if="cartModal">
+                <header class="cart-wrapper__header">
+                    <p class="cart-title">Cart</p>
+                    <button type="button" class="close" @click="toggle">
+                        <img src="../../../public/item/close.svg">
+                    </button>
+                </header>
+                <section class="cart-wrapper__main">
+                    <div class="cart-item">
+                        <img class="cart-item__img" src="../../../public/mainpage/Carousel/Example.png">
+                        <div class="cart-item__info">
+                            <div>
+                                <p class="cart-item__name">6og Secure Hoodie Black</p>
+                                <p class="cart-item__size">M</p>
+                                <p class="cart-item__price">$150</p>
                             </div>
-                            <button class="cart-item__remove-button">Remove</button>
+
+                            <div class="cart-item__actions">
+                                <div class="cart-item__quantity-selector">
+                                    <button class="cart-item__quantity-button">-</button>
+                                    <input class="cart-item__quantity-input" min="1" max="9" maxlength="1">
+                                    <button class="cart-item__quantity-button">+</button>
+                                </div>
+                                <button class="cart-item__remove-button">Remove</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <footer class="cart-wrapper__footer">
-                <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
-                <button class="cart-footer__button">Checkout $150</button>
-            </footer>
-        </aside>
+                </section>
+                <footer class="cart-wrapper__footer">
+                    <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
+                    <button class="cart-footer__button">Checkout $150</button>
+                </footer>
+            </aside>
+        </transition>
+        <transition name="fade">
+            <div class="modal-mask" v-if="cartModal"></div>
+        </transition>
     </div>
 </template>
 
 <script>
+    // eslint-disable-next-line no-unused-vars
+    import vClickOutside from 'v-click-outside'
+
     export default {
-        name: "CartModal"
+        name: "CartModal",
+        data: function () {
+            return {
+                cartModal: true,
+
+            }
+        },
+        methods: {
+            toggle() {
+                this.cartModal = !this.cartModal;
+
+            }
+        }
     }
 </script>
 
@@ -52,7 +72,7 @@
         height: 100%;
         background-color: rgba(0, 0, 0, .5);
         display: table;
-        transition: opacity .3s ease;
+        transition: opacity .5s ease;
     }
 
     .cart-wrapper {
@@ -64,9 +84,26 @@
         top: 0;
         right: 0;
         height: 100vh;
-        z-index: 4;
+        z-index: 5;
         background: #fff;
         box-shadow: 2px 0 10px rgba(54, 54, 54, 0.2), -2px 0 10px rgba(54, 54, 54, 0.2);
+    }
+
+    .slide-enter-active, .slide-leave-active {
+        transition: all .5s;
+    }
+
+    .slide-enter, .slide-leave-to {
+        transform: translateX(100%);
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */
+    {
+        opacity: 0;
     }
 
     .cart-wrapper__header {
