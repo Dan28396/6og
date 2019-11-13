@@ -13,7 +13,7 @@ export default new Vuex.Store({
         items: [
             {
                 id: 1,
-                img: require('../public/item/item.png'),
+                img: require('../public/mainpage/Carousel/Example.png'),
                 path: '/item',
                 name: "6og Secure Hoodie Black",
                 price: 20,

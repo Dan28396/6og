@@ -1,5 +1,6 @@
 <template>
     <main>
+        <CartModal/>
         <section class="carousel-section">
             <ItemCarousel/>
         </section>
@@ -30,10 +31,11 @@
     import ItemCarousel from "@/components/ItemPage/ItemCarousel";
     import {mapState} from 'vuex'
     import Inst from "@/components/Inst";
+    import CartModal from "@/components/ItemPage/CartModal";
 
     export default {
         name: "Item",
-        components: {Inst, ItemCarousel},
+        components: {CartModal, Inst, ItemCarousel},
         computed: mapState({
             items: state => state.items,
         }),
