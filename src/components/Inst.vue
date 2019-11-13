@@ -1,5 +1,5 @@
 <template>
-    <a href="https://www.instagram.com/6og___/" target="_blank"><img class="logo__inst" src="../../public/mainpage/INST.png"></a>
+    <a href="https://www.instagram.com/6og___/" target="_blank"><img class="logo__inst" src="../../public/mainpage/insta.png"></a>
 </template>
 
 <script>
