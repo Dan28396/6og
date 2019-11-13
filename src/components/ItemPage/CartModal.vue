@@ -95,6 +95,7 @@
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
+        overflow: auto;
     }
 
     .cart-item {
