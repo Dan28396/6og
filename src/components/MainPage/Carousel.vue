@@ -3,6 +3,7 @@
         <b-carousel
                 id="carousel-1"
                 controls
+                :interval="99999999999"
                 class="carousel"
         >
             <b-carousel-slide :key="item.id" v-for="(item) in items">
@@ -39,8 +40,15 @@
         justify-self: center;
         align-self: auto;
         margin: auto;
-        max-width: 400px;
+        max-width: 450px;
+        min-width: 250px;
+        width: 50vw;
     }
 
+    @media all and (max-width: 850px) {
+        .carousel{
+            max-width: 400px;
+        }
+    }
 
 </style>

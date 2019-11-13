@@ -21,18 +21,19 @@
                 <button class="cart-button">ADD TO CART</button>
             </div>
         </section>
-        <img class="romb" src="../../../public/mainpage/romb.png">
-        <img class="logo__topright" src="../../../public/mainpage/INST.png">
+        <img class="romb" src="../../../public/mainpage/romb2_white.svg">
+        <Inst/>
     </main>
 </template>
 
 <script>
     import ItemCarousel from "@/components/ItemPage/ItemCarousel";
     import {mapState} from 'vuex'
+    import Inst from "@/components/Inst";
 
     export default {
         name: "Item",
-        components: {ItemCarousel},
+        components: {Inst, ItemCarousel},
         computed: mapState({
             items: state => state.items,
         }),
@@ -40,6 +41,10 @@
 </script>
 
 <style scoped>
+    p {
+        display: inline;
+    }
+
     main {
         background-color: #EEEDED;
         position: relative;
@@ -62,20 +67,25 @@
         align-items: center;
     }
 
+    .first-block {
+        display: flex;
+        flex-direction: column;
+    }
+
     .item-info {
-        width: 70%;
-        height: 70%;
+        width: 80%;
+        height: auto;
         display: flex;
         flex-direction: column;
     }
 
     .item-table {
-        width: 90%;
+        width: 80%;
         align-self: flex-start;
     }
 
     .item-text {
-        font-size: 26px;
+        font-size: 1.5vw;
         text-align: left;
     }
 
@@ -95,7 +105,7 @@
     }
 
     .size-text {
-        font-size: 40px;
+        font-size: 2.3vw;
         text-align: left;
         font-weight: bold;
         margin: 0 20px;
@@ -105,20 +115,15 @@
     .romb {
         position: absolute;
         right: 0;
-        bottom: 0;
-        height: 100%;
+        bottom: -10px;
+        height: calc(100% + 20px);
         z-index: -1;
     }
 
-    .logo__topright {
-        position: absolute;
-        top: 60px;
-        right: 100px;
-    }
 
     hr {
         border: 1.5px black solid;
         margin: 10px 0;
-        max-width: 360px;
+        width: 58%;
     }
 </style>
