@@ -71,7 +71,7 @@
         position: absolute;
         top: 30px;
         left: 7%;
-        width: 50%;
+        width: 60%;
         max-width: 400px;
         display: none;
     }
