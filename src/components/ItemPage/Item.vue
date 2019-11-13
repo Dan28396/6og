@@ -19,7 +19,7 @@
                 </div>
                 <p class="item-description">{{items[0].description}}</p>
                 <img class="item-table" src="../../../public/item/table.png">
-                <button class="cart-button">ADD TO CART</button>
+                <button class="cart-button" @click="toggleCartModal">ADD TO CART</button>
             </div>
         </section>
         <img class="romb" src="../../../public/mainpage/romb2_white.svg">
@@ -39,6 +39,12 @@
         computed: mapState({
             items: state => state.items,
         }),
+        methods: {
+            toggleCartModal() {
+
+                this.$store.commit("toggleCartModal");
+            },
+        }
     }
 </script>
 
@@ -75,7 +81,7 @@
     }
 
     .item-info {
-        width: 80%;
+        width: 70%;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -89,6 +95,7 @@
     .item-text {
         font-size: 1.5vw;
         text-align: left;
+        margin: 0;
     }
 
     .item-description {
@@ -126,6 +133,6 @@
     hr {
         border: 1.5px black solid;
         margin: 10px 0;
-        width: 58%;
+        width: 65%;
     }
 </style>

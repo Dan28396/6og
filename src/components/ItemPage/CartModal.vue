@@ -1,10 +1,10 @@
 <template>
     <div>
         <transition name="slide">
-            <aside class="cart-wrapper" v-click-outside="toggle" v-if="cartModal">
+            <aside class="cart-wrapper" v-click-outside="toggleCartModal" v-if="showCartModal">
                 <header class="cart-wrapper__header">
                     <p class="cart-title">Cart</p>
-                    <button type="button" class="close" @click="toggle">
+                    <button type="button" class="close" @click="toggleCartModal">
                         <img src="../../../public/item/close.svg">
                     </button>
                 </header>
@@ -36,28 +36,24 @@
             </aside>
         </transition>
         <transition name="fade">
-            <div class="modal-mask" v-if="cartModal"></div>
+            <div class="modal-mask" v-if="showCartModal"></div>
         </transition>
     </div>
 </template>
 
 <script>
-    // eslint-disable-next-line no-unused-vars
-    import vClickOutside from 'v-click-outside'
+    import {mapState} from 'vuex'
 
     export default {
         name: "CartModal",
-        data: function () {
-            return {
-                cartModal: true,
-
-            }
-        },
+        computed: mapState({
+            cart: state => state.Cart.items,
+            showCartModal: state => state.Cart.showCartModal
+        }),
         methods: {
-            toggle() {
-                this.cartModal = !this.cartModal;
-
-            }
+            toggleCartModal() {
+                this.$store.commit("toggleCartModal");
+            },
         }
     }
 </script>
