@@ -99,7 +99,7 @@
     }
 
     .item-description {
-        font-size: 15px;
+        font-size: 1vw;
         text-align: left;
     }
 

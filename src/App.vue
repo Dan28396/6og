@@ -44,13 +44,14 @@
     }
 
     .carousel-control-next-icon {
-        background-image: url("../public/mainpage/Carousel/right.png") !important;
+        background-image: url("../public/mainpage/Carousel/arrow.svg") !important;
+        transform: rotate(180deg);
         width: 31px;
         height: 25px;
     }
 
     .carousel-control-prev-icon {
-        background-image: url("../public/mainpage/Carousel/left.png") !important;
+        background-image: url("../public/mainpage/Carousel/arrow.svg") !important;
         width: 31px;
         height: 25px;
     }
