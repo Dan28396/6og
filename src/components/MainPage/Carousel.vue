@@ -8,7 +8,7 @@
         >
             <b-carousel-slide :key="item.id" v-for="(item) in items">
                 <template v-slot:img>
-                    <router-link :to="item.path"><img
+                    <router-link :to="{name: 'item', params: {id: item.id}}"><img
                             class="d-block img-fluid w-100"
                             :src='item.img'
                             alt=""
@@ -25,13 +25,8 @@
     export default {
         name: "Carousel",
         computed: mapState({
-            items: state => state.items,
+            items: state => state.Items.items,
         }),
-        data: function () {
-            return {
-                img: require('../../../public/mainpage/Carousel/Example.png')
-            }
-        }
     }
 </script>
 

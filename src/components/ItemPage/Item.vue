@@ -7,9 +7,9 @@
         <section class="main-section">
             <div class="item-info">
                 <div class="first-block">
-                    <p class="item-text">{{items[0].name}}</p>
+                    <p class="item-text">{{items[$route.params.id - 1].name}}</p>
                     <hr>
-                    <p class="item-text">${{items[0].price}}</p>
+                    <p class="item-text">${{items[$route.params.id - 1].price}}</p>
                     <hr>
 
                     <p class="item-text"><span style="vertical-align: top">size</span> <span
@@ -17,13 +17,14 @@
                             class="size-text">L</span><span class="size-text">XL</span></p>
 
                 </div>
-                <p class="item-description">{{items[0].description}}</p>
-                <img class="item-table" src="../../../public/item/table.png">
+                <p class="item-description">{{items[$route.params.id - 1].description}}</p>
+                <img class="item-table" src="../../../public/item/table.svg">
                 <button class="cart-button" @click="toggleCartModal">ADD TO CART</button>
             </div>
         </section>
         <img class="romb" src="../../../public/mainpage/romb2_white.svg">
         <Inst/>
+        <img class="logo__gog" src="../../../public/mainpage/logo.png">
     </main>
 </template>
 
@@ -37,11 +38,10 @@
         name: "Item",
         components: {CartModal, Inst, ItemCarousel},
         computed: mapState({
-            items: state => state.items,
+            items: state => state.Items.items
         }),
         methods: {
             toggleCartModal() {
-
                 this.$store.commit("toggleCartModal");
             },
         }
@@ -127,6 +127,14 @@
         bottom: -10px;
         height: calc(100% + 20px);
         z-index: -1;
+    }
+
+    .logo__gog {
+        position: absolute;
+        bottom: 60px;
+        right: 7%;
+        width: 40%;
+        max-width: 300px;
     }
 
 

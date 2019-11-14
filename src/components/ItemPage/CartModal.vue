@@ -47,8 +47,7 @@
     export default {
         name: "CartModal",
         computed: mapState({
-            cart: state => state.Cart.items,
-            showCartModal: state => state.Cart.showCartModal
+            showCartModal: state => state.showCartModal
         }),
         methods: {
             toggleCartModal() {
@@ -194,7 +193,9 @@
     .cart-item__quantity-input {
         outline: none;
         border: none;
-        padding: 2px 11px;
+        width: 30px;
+        margin: auto;
+        text-align: center;
     }
 
     .cart-item__remove-button {

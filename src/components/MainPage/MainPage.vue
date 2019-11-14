@@ -11,16 +11,12 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
     import Carousel from "@/components/MainPage/Carousel";
     import Inst from "@/components/Inst";
 
     export default {
         name: "MainPage",
         components: {Inst, Carousel},
-        computed: mapState({
-            text: state => state.qwer,
-        }),
     }
 </script>
 
@@ -67,7 +63,7 @@
         max-width: 250px;
     }
 
-    .logo__capsule-future{
+    .logo__capsule-future {
         position: absolute;
         top: 30px;
         left: 7%;
@@ -87,7 +83,8 @@
             left: 7%;
 
         }
-        .logo__capsule-future{
+
+        .logo__capsule-future {
             display: block;
         }
 

@@ -16,13 +16,10 @@ const router = new Router({
             component: MainPage
         },
         {
-            path: '/item',
-            component: Item
+            path: '/item/:id',
+            component: Item,
+            name: 'item'
         },
-        {
-            path: '/jopa',
-            component: Item
-        }
 
     ]
 });

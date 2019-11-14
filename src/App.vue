@@ -12,10 +12,11 @@
     import 'bootstrap/dist/css/bootstrap.css'
     import 'bootstrap-vue/dist/bootstrap-vue.css'
     import vClickOutside from 'v-click-outside'
+    import {currency} from './currency'
 
     Vue.use(vClickOutside)
-
     Vue.use(BootstrapVue)
+    Vue.filter('currency', currency)
 
     export default {
         name: 'app',
