@@ -18,7 +18,8 @@ const router = new Router({
         {
             path: '/item/:id',
             component: Item,
-            name: 'item'
+            name: 'item',
+            props: true,
         },
 
     ]

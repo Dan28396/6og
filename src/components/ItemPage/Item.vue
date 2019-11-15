@@ -6,27 +6,29 @@
         <section class="main-section">
             <div class="item-info">
                 <div class="first-block">
-                    <p class="item-text">{{items[$route.params.id - 1].name}}</p>
+                    <p class="item-text">{{items[id - 1].name}}</p>
                     <hr>
-                    <p class="item-text">${{items[$route.params.id - 1].price}}</p>
+                    <p class="item-text">${{items[id - 1].price}}</p>
                     <hr>
                     <p class="item-text">
                         <span style="vertical-align: top">size</span>
-                        <input type="radio" name="size" id="s_check" checked v-model="s_check"><label for="s_check"
-                                                                                                      class="size-text">S</label>
-                        <input type="radio" name="size" id="m_check" v-model="m_check"><label for="m_check"
-                                                                                              class="size-text">M</label>
-                        <input type="radio" name="size" id="l_check" v-model="l_check"><label for="l_check"
-                                                                                              class="size-text">L</label>
-                        <input type="radio" name="size" id="xl_check" v-model="xl_check"><label for="xl_check"
-                                                                                                class="size-text">XL</label>
+                        <input type="radio" name="size" id="s_check" @click="selectSize('s', id-1)"><label
+                            for="s_check"
+                            class="size-text">S</label>
+                        <input type="radio" name="size" id="m_check" @click="selectSize('m', id-1)"><label for="m_check"
+                                                                                                           class="size-text">M</label>
+                        <input type="radio" name="size" id="l_check" @click="selectSize('l', id-1)"><label for="l_check"
+                                                                                                           class="size-text">L</label>
+                        <input type="radio" name="size" id="xl_check" @click="selectSize('xl', id-1)"><label
+                            for="xl_check"
+                            class="size-text">XL</label>
                     </p>
 
 
                 </div>
-                <p class="item-description">{{items[$route.params.id - 1].description}}</p>
+                <p class="item-description">{{items[id - 1].description}}</p>
                 <img class="item-table" src="../../../public/item/table.svg">
-                <button class="cart-button" @click="addProductToCart(items[$route.params.id - 1])">ADD TO CART</button>
+                <button class="cart-button" @click="addProductToCart(items[id - 1])">ADD TO CART</button>
             </div>
         </section>
         <img class="romb" src="../../../public/mainpage/romb2_white.svg">
@@ -45,21 +47,17 @@
     //TODO Доделать сайзы, убрать таггл модалки при ремуве итема
     export default {
         name: "Item",
-        data: function () {
-            return {
-                s_check: false,
-                m_check: false,
-                l_check: false,
-                xl_check: false,
-            }
-        },
         components: {CartModal, Inst, ItemCarousel},
+        props: ['id'],
         computed: mapState({
             items: state => state.Items.items
         }),
         methods: {
             toggleCartModal() {
                 this.$store.commit("toggleCartModal");
+            },
+            selectSize(size, id) {
+                this.$store.commit("Items/selectSize", {size, id});
             },
             ...mapActions('Cart', [
                 'addProductToCart'
@@ -153,6 +151,19 @@
         max-width: 300px;
     }
 
+    input[type="radio"] {
+        display: none;
+    }
+
+    input[type="radio"] + label {
+        cursor: pointer;
+    }
+
+
+    input[type="radio"]:checked + label {
+        text-decoration: underline;
+
+    }
 
     hr {
         border: 1.5px black solid;

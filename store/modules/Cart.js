@@ -17,16 +17,14 @@ const getters = {
 const actions = {
     addProductToCart({state, commit}, product) {
         commit('setCheckoutStatus', null)
-        if (product.inventory > 0) {
-            const cartItem = state.items.find(item => item.id === product.id)
-            if (!cartItem) {
-                commit('pushProductToCart', product)
-            } else {
-                commit('incrementItemQuantity', cartItem)
-            }
-            commit('Items/decrementProductInventory', {id: product.id}, {root: true})
-            commit('toggleCartModal')
+        const cartItem = state.items.find(item => (item.id === product.id && item.selectedSize === product.selectedSize))
+        if (!cartItem) {
+            commit('pushProductToCart', product)
+        } else {
+            commit('incrementItemQuantity', cartItem)
         }
+        commit('Items/decrementProductInventory', {id: product.id}, {root: true})
+        commit('toggleCartModal')
     }
 }
 
@@ -39,13 +37,13 @@ const mutations = {
             name: product.name,
             price: product.price,
             description: product.description,
-            inventory: product.inventory,
+            selectedSize: product.selectedSize,
             quantity: 1
         })
     },
 
-    incrementItemQuantity(state, {id}) {
-        const cartItem = state.items.find(item => item.id === id)
+    incrementItemQuantity(state, {id, selectedSize}) {
+        const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
         cartItem.quantity++
     },
 
@@ -55,14 +53,12 @@ const mutations = {
 
     removeItem(state, index) {
         state.items.splice(index, 1)
-        state.showCartModal = true
     },
 
-    setItemQuantity(state, {id, change}){
-        const cartItem = state.items.find(item => item.id === id)
+    setItemQuantity(state, {id, selectedSize, change}) {
+        const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
         cartItem.quantity += change
     },
-
 
     toggleCartModal: (state) => {
         state.showCartModal = !state.showCartModal

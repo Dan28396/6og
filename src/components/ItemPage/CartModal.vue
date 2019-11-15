@@ -9,19 +9,19 @@
                     </button>
                 </header>
                 <section class="cart-wrapper__main">
-                    <div class="cart-item" :key="item.id" v-for="(item, index) in items">
+                    <div class="cart-item"  v-for="(item, index) in items" :key="index">
                         <img class="cart-item__img" :src="item.img">
                         <div class="cart-item__info">
                             <div>
                                 <p class="cart-item__name">{{item.name}}</p>
-                                <p class="cart-item__size">M</p>
+                                <p class="cart-item__size">{{item.selectedSize}}</p>
                                 <p class="cart-item__price">${{item.price}}</p>
                             </div>
                             <div class="cart-item__actions">
                                 <div class="cart-item__quantity-selector">
-                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, -1)">-</button>
+                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, item.selectedSize, -1)">-</button>
                                     <input class="cart-item__quantity-input" v-model="item.quantity" disabled>
-                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, 1)">+</button>
+                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, item.selectedSize, 1)">+</button>
                                 </div>
                                 <button class="cart-item__remove-button" @click="removeItem(index)">Remove</button>
                             </div>
@@ -59,8 +59,8 @@
             removeItem(index) {
                 this.$store.commit("Cart/removeItem", index);
             },
-            setItemQuantity(id, change) {
-                this.$store.commit("Cart/setItemQuantity", {id, change})
+            setItemQuantity(id, selectedSize, change,) {
+                this.$store.commit("Cart/setItemQuantity", {id, selectedSize, change})
             },
             toggleCartModal() {
                 this.$store.commit("Cart/toggleCartModal");
@@ -171,6 +171,7 @@
         font-size: 12px;
         color: #a1a1a1;
         margin-bottom: 4px;
+        text-transform: uppercase;
     }
 
     .cart-item__price {
@@ -243,6 +244,7 @@
 
     input:disabled{
         background: white;
+
     }
 
     p {
