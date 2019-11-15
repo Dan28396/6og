@@ -1,6 +1,5 @@
 <template>
     <main>
-        <CartModal/>
         <section class="carousel-section">
             <ItemCarousel/>
         </section>
@@ -11,31 +10,48 @@
                     <hr>
                     <p class="item-text">${{items[$route.params.id - 1].price}}</p>
                     <hr>
+                    <p class="item-text">
+                        <span style="vertical-align: top">size</span>
+                        <input type="radio" name="size" id="s_check" checked v-model="s_check"><label for="s_check"
+                                                                                                      class="size-text">S</label>
+                        <input type="radio" name="size" id="m_check" v-model="m_check"><label for="m_check"
+                                                                                              class="size-text">M</label>
+                        <input type="radio" name="size" id="l_check" v-model="l_check"><label for="l_check"
+                                                                                              class="size-text">L</label>
+                        <input type="radio" name="size" id="xl_check" v-model="xl_check"><label for="xl_check"
+                                                                                                class="size-text">XL</label>
+                    </p>
 
-                    <p class="item-text"><span style="vertical-align: top">size</span> <span
-                            class="size-text">S</span><span class="size-text">M</span><span
-                            class="size-text">L</span><span class="size-text">XL</span></p>
 
                 </div>
                 <p class="item-description">{{items[$route.params.id - 1].description}}</p>
                 <img class="item-table" src="../../../public/item/table.svg">
-                <button class="cart-button" @click="toggleCartModal">ADD TO CART</button>
+                <button class="cart-button" @click="addProductToCart(items[$route.params.id - 1])">ADD TO CART</button>
             </div>
         </section>
         <img class="romb" src="../../../public/mainpage/romb2_white.svg">
+        <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/logo.png"></router-link>
+        <CartModal/>
         <Inst/>
-        <img class="logo__gog" src="../../../public/mainpage/logo.png">
     </main>
 </template>
 
 <script>
     import ItemCarousel from "@/components/ItemPage/ItemCarousel";
-    import {mapState} from 'vuex'
+    import {mapState, mapActions} from 'vuex'
     import Inst from "@/components/Inst";
     import CartModal from "@/components/ItemPage/CartModal";
 
     export default {
         name: "Item",
+        data: function () {
+            return {
+                s_check: false,
+                m_check: false,
+                l_check: false,
+                xl_check: false,
+            }
+        },
         components: {CartModal, Inst, ItemCarousel},
         computed: mapState({
             items: state => state.Items.items
@@ -44,15 +60,14 @@
             toggleCartModal() {
                 this.$store.commit("toggleCartModal");
             },
+            ...mapActions('Cart', [
+                'addProductToCart'
+            ]),
         }
     }
 </script>
 
 <style scoped>
-    p {
-        display: inline;
-    }
-
     main {
         background-color: #EEEDED;
         position: relative;

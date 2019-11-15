@@ -20,13 +20,13 @@ const state = {
     ]
 }
 
-// getters
+
 const getters = {}
 
-// actions
+
 const actions = {}
 
-// mutations
+
 const mutations = {
     decrementProductInventory(state, {id}) {
         const product = state.items.find(product => product.id === id)

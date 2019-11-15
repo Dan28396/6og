@@ -11,15 +11,9 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
     strict: debug,
     modules: {Cart, Items},
-    state: {
-        showCartModal: false,
-    },
+    state: {},
     getters: {},
-    mutations: {
-        toggleCartModal: (state) => {
-            state.showCartModal = !state.showCartModal
-        },
-    },
+    mutations: {},
     actions: {}
 })
 

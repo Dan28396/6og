@@ -1,23 +1,13 @@
 const state = {
     items: [],
+    showCartModal: false,
     checkoutStatus: null
 }
 
 
 const getters = {
-    cartProducts: (state, getters, rootState) => {
-        return state.items.map(({ id, quantity }) => {
-            const product = rootState.Items.all.find(product => product.id === id)
-            return {
-                title: product.title,
-                price: product.price,
-                quantity
-            }
-        })
-    },
-
-    cartTotalPrice: (state, getters) => {
-        return getters.cartProducts.reduce((total, product) => {
+    cartTotalPrice: (state) => {
+        return state.items.reduce((total, product) => {
             return total + product.price * product.quantity
         }, 0)
     }
@@ -25,41 +15,58 @@ const getters = {
 
 
 const actions = {
-    addProductToCart ({ state, commit }, product) {
+    addProductToCart({state, commit}, product) {
         commit('setCheckoutStatus', null)
         if (product.inventory > 0) {
             const cartItem = state.items.find(item => item.id === product.id)
             if (!cartItem) {
-                commit('pushProductToCart', { id: product.id })
+                commit('pushProductToCart', product)
             } else {
                 commit('incrementItemQuantity', cartItem)
             }
-            commit('products/decrementProductInventory', { id: product.id }, { root: true })
+            commit('Items/decrementProductInventory', {id: product.id}, {root: true})
+            commit('toggleCartModal')
         }
     }
 }
 
-// mutations
+
 const mutations = {
-    pushProductToCart (state, { id }) {
+    pushProductToCart(state, product) {
         state.items.push({
-            id,
+            id: product.id,
+            img: product.img,
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            inventory: product.inventory,
             quantity: 1
         })
     },
 
-    incrementItemQuantity (state, { id }) {
+    incrementItemQuantity(state, {id}) {
         const cartItem = state.items.find(item => item.id === id)
         cartItem.quantity++
     },
 
-    setCartItems (state, { items }) {
-        state.items = items
+    setCheckoutStatus(state, status) {
+        state.checkoutStatus = status
     },
 
-    setCheckoutStatus (state, status) {
-        state.checkoutStatus = status
-    }
+    removeItem(state, index) {
+        state.items.splice(index, 1)
+        state.showCartModal = true
+    },
+
+    setItemQuantity(state, {id, change}){
+        const cartItem = state.items.find(item => item.id === id)
+        cartItem.quantity += change
+    },
+
+
+    toggleCartModal: (state) => {
+        state.showCartModal = !state.showCartModal
+    },
 }
 
 export default {

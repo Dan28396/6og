@@ -9,29 +9,28 @@
                     </button>
                 </header>
                 <section class="cart-wrapper__main">
-                    <div class="cart-item">
-                        <img class="cart-item__img" src="../../../public/mainpage/Carousel/Example.png">
+                    <div class="cart-item" :key="item.id" v-for="(item, index) in items">
+                        <img class="cart-item__img" :src="item.img">
                         <div class="cart-item__info">
                             <div>
-                                <p class="cart-item__name">6og Secure Hoodie Black</p>
+                                <p class="cart-item__name">{{item.name}}</p>
                                 <p class="cart-item__size">M</p>
-                                <p class="cart-item__price">$150</p>
+                                <p class="cart-item__price">${{item.price}}</p>
                             </div>
-
                             <div class="cart-item__actions">
                                 <div class="cart-item__quantity-selector">
-                                    <button class="cart-item__quantity-button">-</button>
-                                    <input class="cart-item__quantity-input" min="1" max="9" maxlength="1">
-                                    <button class="cart-item__quantity-button">+</button>
+                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, -1)">-</button>
+                                    <input class="cart-item__quantity-input" v-model="item.quantity" disabled>
+                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, 1)">+</button>
                                 </div>
-                                <button class="cart-item__remove-button">Remove</button>
+                                <button class="cart-item__remove-button" @click="removeItem(index)">Remove</button>
                             </div>
                         </div>
                     </div>
                 </section>
                 <footer class="cart-wrapper__footer">
                     <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
-                    <button class="cart-footer__button">Checkout $150</button>
+                    <button class="cart-footer__button">Checkout ${{total}}</button>
                 </footer>
             </aside>
         </transition>
@@ -42,17 +41,31 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import {mapState, mapGetters} from 'vuex'
 
     export default {
         name: "CartModal",
-        computed: mapState({
-            showCartModal: state => state.showCartModal
-        }),
+        computed: {
+            ...mapState({
+                showCartModal: state => state.Cart.showCartModal,
+                checkoutStatus: state => state.Cart.checkoutStatus,
+                items: state => state.Cart.items
+            }),
+            ...mapGetters('Cart', {
+                total: 'cartTotalPrice'
+            }),
+        },
         methods: {
-            toggleCartModal() {
-                this.$store.commit("toggleCartModal");
+            removeItem(index) {
+                this.$store.commit("Cart/removeItem", index);
             },
+            setItemQuantity(id, change) {
+                this.$store.commit("Cart/setItemQuantity", {id, change})
+            },
+            toggleCartModal() {
+                this.$store.commit("Cart/toggleCartModal");
+            },
+
         }
     }
 </script>
@@ -201,7 +214,7 @@
     .cart-item__remove-button {
         letter-spacing: 2px;
         font-size: 10px;
-        background: none;
+        background: transparent;
         outline: none;
         border: none;
         text-transform: uppercase;
@@ -226,6 +239,10 @@
         color: white;
         border: none;
         outline: none;
+    }
+
+    input:disabled{
+        background: white;
     }
 
     p {
