@@ -40,8 +40,9 @@
     import ItemCarousel from "@/components/ItemPage/ItemCarousel";
     import {mapState, mapActions} from 'vuex'
     import Inst from "@/components/Inst";
-    import CartModal from "@/components/ItemPage/CartModal";
+    import CartModal from "@/components/ItemPage/CartModal"
 
+    //TODO Доделать сайзы, убрать таггл модалки при ремуве итема
     export default {
         name: "Item",
         data: function () {
