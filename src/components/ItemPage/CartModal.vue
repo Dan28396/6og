@@ -9,7 +9,7 @@
                     </button>
                 </header>
                 <section class="cart-wrapper__main">
-                    <div class="cart-item"  v-for="(item, index) in items" :key="index">
+                    <div class="cart-item" v-for="(item, index) in items" :key="index">
                         <img class="cart-item__img" :src="item.img">
                         <div class="cart-item__info">
                             <div>
@@ -19,9 +19,11 @@
                             </div>
                             <div class="cart-item__actions">
                                 <div class="cart-item__quantity-selector">
-                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, item.selectedSize, -1)">-</button>
+                                    <button class="cart-item__quantity-button" @click="decrementItemQuantity(item)">-
+                                    </button>
                                     <input class="cart-item__quantity-input" v-model="item.quantity" disabled>
-                                    <button class="cart-item__quantity-button" @click="setItemQuantity(item.id, item.selectedSize, 1)">+</button>
+                                    <button class="cart-item__quantity-button" @click="incrementItemQuantity(item)">+
+                                    </button>
                                 </div>
                                 <button class="cart-item__remove-button" @click="removeItem(index)">Remove</button>
                             </div>
@@ -59,8 +61,11 @@
             removeItem(index) {
                 this.$store.commit("Cart/removeItem", index);
             },
-            setItemQuantity(id, selectedSize, change,) {
-                this.$store.commit("Cart/setItemQuantity", {id, selectedSize, change})
+            incrementItemQuantity(item) {
+                this.$store.commit("Cart/incrementItemQuantity", item)
+            },
+            decrementItemQuantity(item) {
+                this.$store.commit("Cart/decrementItemQuantity", item)
             },
             toggleCartModal() {
                 this.$store.commit("Cart/toggleCartModal");
@@ -242,7 +247,7 @@
         outline: none;
     }
 
-    input:disabled{
+    input:disabled {
         background: white;
 
     }

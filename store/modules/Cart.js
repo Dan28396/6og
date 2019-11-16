@@ -23,7 +23,6 @@ const actions = {
         } else {
             commit('incrementItemQuantity', cartItem)
         }
-        commit('Items/decrementProductInventory', {id: product.id}, {root: true})
         commit('toggleCartModal')
     }
 }
@@ -47,6 +46,14 @@ const mutations = {
         cartItem.quantity++
     },
 
+    decrementItemQuantity(state, {id, selectedSize}) {
+        const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
+        if (cartItem > 0) {
+            cartItem.quantity--
+        }
+
+    },
+
     setCheckoutStatus(state, status) {
         state.checkoutStatus = status
     },
@@ -55,10 +62,6 @@ const mutations = {
         state.items.splice(index, 1)
     },
 
-    setItemQuantity(state, {id, selectedSize, change}) {
-        const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
-        cartItem.quantity += change
-    },
 
     toggleCartModal: (state) => {
         state.showCartModal = !state.showCartModal
