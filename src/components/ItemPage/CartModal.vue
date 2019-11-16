@@ -19,11 +19,9 @@
                             </div>
                             <div class="cart-item__actions">
                                 <div class="cart-item__quantity-selector">
-                                    <button class="cart-item__quantity-button" @click="decrementItemQuantity(item)">-
-                                    </button>
+                                    <button class="cart-item__quantity-button" @click="decrementItemQuantity(item)">-</button>
                                     <input class="cart-item__quantity-input" v-model="item.quantity" disabled>
-                                    <button class="cart-item__quantity-button" @click="incrementItemQuantity(item)">+
-                                    </button>
+                                    <button class="cart-item__quantity-button" @click="incrementItemQuantity(item)">+</button>
                                 </div>
                                 <button class="cart-item__remove-button" @click="removeItem(index)">Remove</button>
                             </div>
