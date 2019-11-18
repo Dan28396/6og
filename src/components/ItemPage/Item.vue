@@ -263,7 +263,7 @@
 
         hr{
             border: none;
-            border-top: 1px solid black;
+            border-top: 2px solid black;
         }
     }
 
