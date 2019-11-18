@@ -19,9 +19,11 @@
                             </div>
                             <div class="cart-item__actions">
                                 <div class="cart-item__quantity-selector">
-                                    <button class="cart-item__quantity-button" @click="decrementItemQuantity(item)">-</button>
+                                    <button class="cart-item__quantity-button" @click="decrementItemQuantity(item)">-
+                                    </button>
                                     <input class="cart-item__quantity-input" v-model="item.quantity" disabled>
-                                    <button class="cart-item__quantity-button" @click="incrementItemQuantity(item)">+</button>
+                                    <button class="cart-item__quantity-button" @click="incrementItemQuantity(item)">+
+                                    </button>
                                 </div>
                                 <button class="cart-item__remove-button" @click="removeItem(index)">Remove</button>
                             </div>
@@ -59,11 +61,11 @@
             removeItem(index) {
                 this.$store.commit("Cart/removeItem", index);
             },
-            incrementItemQuantity(item) {
-                this.$store.commit("Cart/incrementItemQuantity", item)
-            },
             decrementItemQuantity(item) {
                 this.$store.commit("Cart/decrementItemQuantity", item)
+            },
+            incrementItemQuantity(item) {
+                this.$store.commit("Cart/incrementItemQuantity", item)
             },
             toggleCartModal() {
                 this.$store.commit("Cart/toggleCartModal");
@@ -96,7 +98,7 @@
         right: 0;
         height: 100vh;
         z-index: 5;
-        background: #fff;
+        background: #101010;
         box-shadow: 2px 0 10px rgba(54, 54, 54, 0.2), -2px 0 10px rgba(54, 54, 54, 0.2);
     }
 
@@ -128,10 +130,21 @@
         margin: 20px;
         letter-spacing: 2px;
         text-transform: uppercase;
+        color: white;
     }
 
     .close {
         margin: 10px 10px;
+        opacity: 0.8;
+    }
+
+    .close:hover{
+        opacity: 1!important;
+    }
+
+    .close img {
+        width: 20px;
+        height: 20px;
     }
 
     .close:focus {
@@ -168,11 +181,12 @@
         white-space: nowrap;
         overflow: hidden;
         width: 200px;
+        color: white;
     }
 
     .cart-item__size {
         font-size: 12px;
-        color: #a1a1a1;
+        color: white;
         margin-bottom: 4px;
         text-transform: uppercase;
     }
@@ -180,6 +194,7 @@
     .cart-item__price {
         font-size: 12px;
         margin-bottom: 4px;
+        color: white;
     }
 
     .cart-item__img {
@@ -195,7 +210,7 @@
 
     .cart-item__quantity-selector {
         display: grid;
-        border: 1px #a1a1a1 solid;
+        border: 1px white solid;
         grid-template-columns: repeat(3, 30px);
         height: 40px;
     }
@@ -205,6 +220,7 @@
         border: none;
         background: none;
         line-height: 30px;
+        color: white;
     }
 
     .cart-item__quantity-input {
@@ -213,6 +229,8 @@
         width: 30px;
         margin: auto;
         text-align: center;
+        background: #101010 !important;
+        color: white;
     }
 
     .cart-item__remove-button {
@@ -222,7 +240,8 @@
         outline: none;
         border: none;
         text-transform: uppercase;
-        text-decoration: underline black;
+        text-decoration: underline white;
+        color: white;
     }
 
     .cart-wrapper__footer {
@@ -234,13 +253,14 @@
     .cart-footer__ship {
         font-size: 12px;
         margin-bottom: 15px;
+        color: white;
     }
 
     .cart-footer__button {
         width: 100%;
         padding: 10px 10px;
-        background: black;
-        color: white;
+        background: white;
+        color: #101010;
         border: none;
         outline: none;
     }

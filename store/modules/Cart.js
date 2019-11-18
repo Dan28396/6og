@@ -45,10 +45,12 @@ const mutations = {
         const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
         cartItem.quantity++
     },
-//TODO Удалять итем, если количество = 0
+
+
+    //TODO Проверку на выбор размера
     decrementItemQuantity(state, {id, selectedSize}) {
         const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
-        if (cartItem.quantity > 0) {
+        if (cartItem.quantity > 1) {
             cartItem.quantity--
         }
     },
