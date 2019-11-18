@@ -21,11 +21,12 @@
 </script>
 
 <style scoped>
+
     main {
         background-color: #EEEDED;
         position: relative;
         width: 92%;
-        height: 92%;
+        height: calc(100vh - 80px);
         margin: auto;
         display: flex;
     }

@@ -55,11 +55,22 @@
         height: 25px;
     }
 
+    @media all and (max-width: 576px) {
+        .carousel-control-next-icon {
+            width: 20px;
+            height: 16px;
+        }
+
+        .carousel-control-prev-icon {
+            width: 20px;
+            height: 16px;
+        }
+    }
+
     html, body {
         height: 100%;
         width: 100%;
         margin: 0;
-
     }
 
     #app {
@@ -69,10 +80,9 @@
         text-align: center;
         color: black;
         margin: 0;
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        max-height: 100vh;
+        height: auto;
+        width: 100%;
+        min-height: 100vh;
         display: flex;
     }
 </style>

@@ -138,8 +138,8 @@
         opacity: 0.8;
     }
 
-    .close:hover{
-        opacity: 1!important;
+    .close:hover {
+        opacity: 1 !important;
     }
 
     .close img {
@@ -156,7 +156,8 @@
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .cart-item {
@@ -164,6 +165,7 @@
         grid-template-columns: 40% 1fr;
         column-gap: 20px;
         margin: 20px 0;
+        max-width: 100%;
     }
 
 
@@ -279,5 +281,51 @@
         /* display: none; <- Crashes Chrome on hover */
         -webkit-appearance: none;
         margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    @media all and (max-width: 767px) {
+        .cart-wrapper {
+            width: 100%;
+        }
+
+        .cart-wrapper__main {
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .cart-item {
+            width: 100%;
+        }
+
+    }
+
+    @media all and (max-width: 576px) {
+        .cart-item p {
+            font-size: 12px;
+        }
+
+        .cart-item__actions {
+            width: 90%;
+        }
+
+        .cart-item__quantity-selector {
+            grid-template-columns: repeat(3, 25px);
+
+        }
+
+        .cart-item__quantity-input {
+            width: 25px;
+        }
+
+        @media all and (max-width: 360px) {
+            .cart-item__actions {
+                justify-content: flex-start;
+
+            }
+
+            .cart-item__quantity-selector {
+                margin-right: 20px;
+            }
+        }
     }
 </style>

@@ -1,5 +1,6 @@
 <template>
     <main>
+        <router-link to="/" class="logo__sm"><img src="../../../public/mainpage/logo_the_future.png"></router-link>
         <section class="carousel-section">
             <ItemCarousel/>
         </section>
@@ -15,8 +16,9 @@
                         <input type="radio" name="size" id="s_check" @click="selectSize('s', id-1)"><label
                             for="s_check"
                             class="size-text">S</label>
-                        <input type="radio" name="size" id="m_check" @click="selectSize('m', id-1)"><label for="m_check"
-                                                                                                           class="size-text">M</label>
+                        <input type="radio" name="size" id="m_check" checked @click="selectSize('m', id-1)"><label
+                            for="m_check"
+                            class="size-text">M</label>
                         <input type="radio" name="size" id="l_check" @click="selectSize('l', id-1)"><label for="l_check"
                                                                                                            class="size-text">L</label>
                         <input type="radio" name="size" id="xl_check" @click="selectSize('xl', id-1)"><label
@@ -70,9 +72,9 @@
     main {
         background-color: #EEEDED;
         position: relative;
-        width: 92%;
-        height: 92%;
-        margin: auto;
+        width: calc(100% - 70px);
+        min-height: calc(100% - 80px);
+        margin: 30px auto;
         display: flex;
         z-index: 2;
     }
@@ -90,15 +92,16 @@
     }
 
     .first-block {
-        display: flex;
-        flex-direction: column;
+        margin-bottom: 15px;
     }
+
 
     .item-info {
         width: 70%;
         height: auto;
         display: flex;
         flex-direction: column;
+        margin-bottom: 30px;
     }
 
     .item-table {
@@ -170,4 +173,99 @@
         margin: 10px 0;
         width: 65%;
     }
+
+    .logo__sm {
+        display: none;
+    }
+
+    @media all and (max-width: 1300px) {
+        .item-info {
+            width: 95%;
+        }
+
+        hr {
+            width: 48%;
+        }
+
+    }
+
+    @media all and (max-width: 1100px) {
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        hr {
+            width: 55vw
+        }
+
+        .logo__sm {
+            display: block;
+            align-self: flex-start;
+            justify-self: flex-start;
+            width: 60%;
+            padding: 7%;
+        }
+
+        .logo__sm img {
+            width: 100%;
+        }
+
+        .logo__gog {
+            display: none;
+        }
+
+        .carousel-section {
+            width: 70%;
+            margin-bottom: 30px;
+        }
+
+        .main-section {
+            width: 70%;
+        }
+
+        .first-block {
+            align-items: center;
+
+        }
+
+        .item-text {
+            font-size: 4vw;
+        }
+
+        .item-description {
+            font-size: 2vw;
+        }
+
+        .size-text {
+            font-size: 4.5vw;
+        }
+    }
+
+    @media all and (max-width: 576px) {
+        main {
+            width: calc(100% - 30px);
+            margin: 20px auto;
+        }
+
+        .item-table {
+            width: 100%;
+        }
+
+        .cart-button {
+            width: 80%;
+        }
+
+        .size-text {
+            margin: 0 10px;
+        }
+
+        hr{
+            border: none;
+            border-top: 1px solid black;
+        }
+    }
+
+
 </style>
