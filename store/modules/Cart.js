@@ -24,6 +24,13 @@ const actions = {
             commit('incrementItemQuantity', cartItem)
         }
         commit('toggleCartModal')
+    },
+
+    removeProductFromCart({state,commit}, index){
+        commit('removeItem', index);
+        if (state.items.length === 0){
+            commit('toggleCartModal')
+        }
     }
 }
 
@@ -60,7 +67,7 @@ const mutations = {
     },
 
     removeItem(state, index) {
-        state.items.splice(index, 1)
+        state.items.splice(index, 1);
     },
 
 

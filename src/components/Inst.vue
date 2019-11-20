@@ -13,7 +13,7 @@
         position: absolute;
         top: 60px;
         right: 7%;
-        width: 2.5%;
+        width: 30px;
         min-width: 30px;
     }
 

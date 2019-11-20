@@ -36,22 +36,20 @@
         <img class="romb" src="../../../public/mainpage/romb2_white.svg">
         <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/logo.png"></router-link>
         <CartModal/>
-        <ShoppingCartIcon/>
-        <Inst/>
+        <CartInstButtons/>
     </main>
 </template>
 
 <script>
     import ItemCarousel from "@/components/ItemPage/ItemCarousel";
     import {mapState, mapActions} from 'vuex'
-    import Inst from "@/components/Inst";
     import CartModal from "@/components/ItemPage/CartModal"
-    import ShoppingCartIcon from "@/components/ItemPage/ShoppingCartIcon";
+    import CartInstButtons from "@/components/ItemPage/CartInstButtons";
 
     //TODO Доделать сайзы, убрать таггл модалки при ремуве итема
     export default {
         name: "Item",
-        components: {ShoppingCartIcon, CartModal, Inst, ItemCarousel},
+        components: {CartInstButtons, CartModal, ItemCarousel},
         props: ['id'],
         computed: mapState({
             items: state => state.Items.items

@@ -9,7 +9,7 @@
                     </button>
                 </header>
                 <section class="cart-wrapper__main">
-                    <div class="cart-item" v-for="(item, index) in items" :key="index">
+                    <div class="cart-item" v-for="(item, index) in items" :key="index + item.name">
                         <img class="cart-item__img" :src="item.img">
                         <div class="cart-item__info">
                             <div>
@@ -25,14 +25,16 @@
                                     <button class="cart-item__quantity-button" @click="incrementItemQuantity(item)">+
                                     </button>
                                 </div>
-                                <button class="cart-item__remove-button" @click="removeItem(index)">Remove</button>
+                                <button class="cart-item__remove-button" @click.stop="removeProductFromCart(index)">Remove</button>
                             </div>
                         </div>
                     </div>
                 </section>
                 <footer class="cart-wrapper__footer">
                     <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
-                    <router-link to="/checkout"><button class="cart-footer__button" >Checkout ${{total}}</button></router-link>
+                    <router-link to="/checkout">
+                        <button class="cart-footer__button">Checkout ${{total}}</button>
+                    </router-link>
                 </footer>
             </aside>
         </transition>
@@ -58,8 +60,8 @@
             }),
         },
         methods: {
-            removeItem(index) {
-                this.$store.commit("Cart/removeItem", index);
+            removeProductFromCart: function (index) {
+                this.$store.dispatch("Cart/removeProductFromCart", index);
             },
             decrementItemQuantity(item) {
                 this.$store.commit("Cart/decrementItemQuantity", item)
@@ -71,7 +73,7 @@
                 this.$store.commit("Cart/toggleCartModal");
             },
 
-        }
+        },
     }
 </script>
 
