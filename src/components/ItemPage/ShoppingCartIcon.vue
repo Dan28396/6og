@@ -27,12 +27,12 @@
 
 <style scoped>
     .shopping-cart {
-        position: absolute;
         top: 60px;
         right: 10%;
         width: 30px;
         cursor: pointer;
     }
+
 
     .shopping-cart__dot {
         position: absolute;
@@ -56,6 +56,9 @@
     @media all and (max-width: 850px) {
         .shopping-cart {
             top: 40px
+        }
+        .icons-wrap{
+            right: 55px;
         }
     }
 </style>

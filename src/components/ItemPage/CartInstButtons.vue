@@ -1,7 +1,7 @@
 <template>
     <div class="icons-wrap">
-        <ShoppingCartIcon/>
-        <Inst/>
+        <ShoppingCartIcon :class="{}"/>
+        <Inst :class="{logo__inst__static: true}"/>
     </div>
 
 </template>
@@ -16,15 +16,9 @@
     }
 </script>
 
-<style>
-    .shopping-cart{
-        position: static!important;
-    }
-    .logo__inst{
-        position: static!important;
-    }
+<style scoped>
 
-    .icons-wrap{
+    .icons-wrap {
         position: absolute;
         top: 7%;
         right: 7%;
@@ -33,5 +27,19 @@
         width: 30px;
         height: 30px;
         column-gap: 10px;
+    }
+
+    @media all and (max-width: 1100px) {
+        .icons-wrap {
+            right: 80px;
+        }
+    }
+    @media all and (max-width: 850px) {
+        .shopping-cart {
+            top: 40px
+        }
+        .icons-wrap{
+            right: 60px;
+        }
     }
 </style>

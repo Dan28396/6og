@@ -1,5 +1,6 @@
 <template>
-    <a href="https://www.instagram.com/6og___/" target="_blank"><img class="logo__inst" src="../../public/mainpage/insta.png"></a>
+    <a href="https://www.instagram.com/6og___/" target="_blank"><img class="logo__inst"
+                                                                     src="../../public/mainpage/insta.png"></a>
 </template>
 
 <script>
@@ -17,8 +18,12 @@
         min-width: 30px;
     }
 
+    .logo__inst__static img {
+        position: static;
+    }
+
     @media all and (max-width: 850px) {
-        .logo__inst{
+        .logo__inst {
             top: 40px
         }
     }
