@@ -36,6 +36,7 @@
         <img class="romb" src="../../../public/mainpage/romb2_white.svg">
         <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/logo.png"></router-link>
         <CartModal/>
+        <ShoppingCartIcon/>
         <Inst/>
     </main>
 </template>
@@ -45,18 +46,19 @@
     import {mapState, mapActions} from 'vuex'
     import Inst from "@/components/Inst";
     import CartModal from "@/components/ItemPage/CartModal"
+    import ShoppingCartIcon from "@/components/ItemPage/ShoppingCartIcon";
 
     //TODO Доделать сайзы, убрать таггл модалки при ремуве итема
     export default {
         name: "Item",
-        components: {CartModal, Inst, ItemCarousel},
+        components: {ShoppingCartIcon, CartModal, Inst, ItemCarousel},
         props: ['id'],
         computed: mapState({
             items: state => state.Items.items
         }),
         methods: {
             toggleCartModal() {
-                this.$store.commit("toggleCartModal");
+                this.$store.commit("Cart/toggleCartModal");
             },
             selectSize(size, id) {
                 this.$store.commit("Items/selectSize", {size, id});
@@ -254,7 +256,7 @@
         }
 
         .cart-button {
-            width: 80%;
+            width: 100%;
         }
 
         .size-text {

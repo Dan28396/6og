@@ -32,7 +32,7 @@
                 </section>
                 <footer class="cart-wrapper__footer">
                     <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
-                    <button class="cart-footer__button">Checkout ${{total}}</button>
+                    <router-link to="/checkout"><button class="cart-footer__button" >Checkout ${{total}}</button></router-link>
                 </footer>
             </aside>
         </transition>
