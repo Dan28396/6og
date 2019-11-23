@@ -32,10 +32,11 @@
     }
 
     .romb {
-        position: absolute;
+        position: fixed;
         right: 0;
         bottom: -10px;
         height: calc(100% + 20px);
+
     }
 
     .logo__capsule {
@@ -74,6 +75,11 @@
     }
 
     @media all and (max-width: 850px) {
+        main {
+            width: 100%;
+            height: 100vh;
+        }
+
         .logo__gog, .logo__future {
             display: none;
         }
