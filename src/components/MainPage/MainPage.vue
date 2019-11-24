@@ -1,6 +1,5 @@
 <template>
     <main>
-        <img class="romb" src="../../../public/mainpage/romb2_white.svg">
         <img class="logo__capsule" src="../../../public/mainpage/logotl.png">
         <img class="logo__gog" src="../../../public/mainpage/logo.png">
         <img class="logo__future" src="../../../public/mainpage/logobr.png">
@@ -23,20 +22,14 @@
 <style scoped>
 
     main {
-        background-color: #EEEDED;
         position: relative;
-        width: 92%;
-        height: calc(100vh - 80px);
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
         margin: auto;
         display: flex;
-    }
-
-    .romb {
-        position: fixed;
-        right: 0;
-        bottom: -10px;
-        height: calc(100% + 20px);
-
+        background: #EEEDED url("../../../public/mainpage/Resurs_1.svg") no-repeat center center;
+        background-size: cover;
     }
 
     .logo__capsule {
@@ -75,11 +68,6 @@
     }
 
     @media all and (max-width: 850px) {
-        main {
-            width: 100%;
-            height: 100vh;
-        }
-
         .logo__gog, .logo__future {
             display: none;
         }

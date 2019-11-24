@@ -1,7 +1,8 @@
 const state = {
     items: [],
     showCartModal: false,
-    checkoutStatus: null
+    checkoutStatus: null,
+    finalCart: []
 }
 
 
@@ -10,7 +11,7 @@ const getters = {
         return state.items.reduce((total, product) => {
             return total + product.price * product.quantity
         }, 0)
-    }
+    },
 }
 
 
@@ -19,19 +20,33 @@ const actions = {
         commit('setCheckoutStatus', null)
         const cartItem = state.items.find(item => (item.id === product.id && item.selectedSize === product.selectedSize))
         if (!cartItem) {
-            commit('pushProductToCart', product)
+            commit('pushProductToCart', product);
+            commit('finalizeCart')
         } else {
             commit('incrementItemQuantity', cartItem)
+            commit('finalizeCart')
         }
         commit('toggleCartModal')
     },
 
-    removeProductFromCart({state,commit}, index){
+    removeProductFromCart({state, commit}, index) {
         commit('removeItem', index);
-        if (state.items.length === 0){
+        commit('finalizeCart')
+        if (state.items.length === 0) {
             commit('toggleCartModal')
         }
+    },
+
+    incrementItemQuantityAction({commit}, {id, selectedSize}) {
+        commit('incrementItemQuantity', {id, selectedSize})
+        commit('finalizeCart')
+    },
+
+    decrementItemQuantityAction({commit}, {id, selectedSize}) {
+        commit('decrementItemQuantity', {id, selectedSize})
+        commit('finalizeCart')
     }
+
 }
 
 
@@ -48,13 +63,26 @@ const mutations = {
         })
     },
 
+    finalizeCart(state) {
+        state.finalCart = [];
+        state.items.forEach(item => (state.finalCart.push({
+            name: item.name,
+            unit_amount:
+                {
+                    currency_code: "USD",
+                    value: item.price + ''
+                },
+            quantity: item.quantity + '',
+            description: 'Size: ' + item.selectedSize
+        })))
+    },
+
     incrementItemQuantity(state, {id, selectedSize}) {
         const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
         cartItem.quantity++
     },
 
 
-    //TODO Проверку на выбор размера
     decrementItemQuantity(state, {id, selectedSize}) {
         const cartItem = state.items.find(item => (item.id === id && item.selectedSize === selectedSize))
         if (cartItem.quantity > 1) {
@@ -73,6 +101,7 @@ const mutations = {
 
     toggleCartModal: (state) => {
         state.showCartModal = !state.showCartModal
+        document.body.classList.toggle("modal__active")
     },
 }
 

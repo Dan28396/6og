@@ -33,7 +33,7 @@
                 <button class="cart-button" @click="addProductToCart(items[id - 1])">ADD TO CART</button>
             </div>
         </section>
-        <img class="romb" src="../../../public/mainpage/romb2_white.svg">
+
         <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/logo.png"></router-link>
         <CartModal/>
         <CartInstButtons/>
@@ -52,7 +52,7 @@
         components: {CartInstButtons, CartModal, ItemCarousel},
         props: ['id'],
         computed: mapState({
-            items: state => state.Items.items
+            items: state => state.Items.items,
         }),
         methods: {
             toggleCartModal() {
@@ -70,13 +70,15 @@
 
 <style scoped>
     main {
-        background-color: #EEEDED;
+
         position: relative;
-        width: calc(100% - 70px);
-        min-height: calc(100% - 80px);
-        margin: 30px auto;
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
         display: flex;
         z-index: 2;
+        background: #EEEDED url("../../../public/mainpage/romb2_white.svg") no-repeat center center;
+        background-size: cover;
     }
 
     .carousel-section {
@@ -139,8 +141,8 @@
 
 
     .romb {
-        position: absolute;
-        right: 0;
+        position: fixed;
+        right: -25%;
         bottom: -10px;
         height: calc(100% + 20px);
         z-index: -1;
@@ -194,6 +196,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 0;
         }
 
         hr {
@@ -244,10 +247,6 @@
     }
 
     @media all and (max-width: 576px) {
-        main {
-            width: calc(100% - 30px);
-            margin: 20px auto;
-        }
 
         .item-table {
             width: 100%;
@@ -261,7 +260,7 @@
             margin: 0 10px;
         }
 
-        hr{
+        hr {
             border: none;
             border-top: 2px solid black;
         }

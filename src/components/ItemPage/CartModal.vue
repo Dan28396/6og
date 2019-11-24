@@ -33,7 +33,7 @@
                 <footer class="cart-wrapper__footer">
                     <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
                     <router-link to="/checkout">
-                        <button class="cart-footer__button">Checkout ${{total}}</button>
+                        <button class="cart-footer__button" @click="finalizeCart">Checkout ${{total}}</button>
                     </router-link>
                 </footer>
             </aside>
@@ -64,13 +64,16 @@
                 this.$store.dispatch("Cart/removeProductFromCart", index);
             },
             decrementItemQuantity(item) {
-                this.$store.commit("Cart/decrementItemQuantity", item)
+                this.$store.dispatch("Cart/decrementItemQuantityAction", item)
             },
             incrementItemQuantity(item) {
-                this.$store.commit("Cart/incrementItemQuantity", item)
+                this.$store.dispatch("Cart/incrementItemQuantityAction", item)
             },
             toggleCartModal() {
                 this.$store.commit("Cart/toggleCartModal");
+            },
+            finalizeCart() {
+                this.$store.commit("Cart/finalizeCart");
             },
 
         },

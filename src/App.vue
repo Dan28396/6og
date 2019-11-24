@@ -55,6 +55,11 @@
         height: 25px;
     }
 
+    .modal__active{
+        overflow: hidden;
+    }
+
+
     @media all and (max-width: 576px) {
         .carousel-control-next-icon {
             width: 20px;
