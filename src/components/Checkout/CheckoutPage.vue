@@ -176,6 +176,8 @@
 
     .checkout__content-wrap {
         width: 60%;
+        height: 100%;
+        max-height: 100vh;
         margin: 60px auto 0px;
         display: flex;
         flex-direction: column;
@@ -183,6 +185,8 @@
 
     .checkout__items-wrap {
         width: 85%;
+        height: 100%;
+        max-height: 100vh;
         margin: 85px auto;
         display: flex;
         flex-direction: column;
