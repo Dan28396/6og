@@ -63,7 +63,7 @@
                         <p>$15</p>
                     </div>
                 </div>
-                <div class="total-row" >
+                <div class="total-row">
                     <p>TOTAL</p>
                     <p>${{total+15}}</p>
                 </div>
@@ -88,6 +88,70 @@
             ...mapState({
                 items: state => state.Cart.items,
             }),
+            email: {
+                get() {
+                    return this.$store.state.Checkout.email
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateEmail', value)
+                }
+            },
+            firstName: {
+                get() {
+                    return this.$store.state.Checkout.firstName
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateFirstName', value)
+                }
+            },
+            lastName: {
+                get() {
+                    return this.$store.state.Checkout.lastName
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateLastName', value)
+                }
+            },
+            address: {
+                get() {
+                    return this.$store.state.Checkout.address
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateAddress', value)
+                }
+            },
+            city: {
+                get() {
+                    return this.$store.state.Checkout.city
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateCity', value)
+                }
+            },
+            country: {
+                get() {
+                    return this.$store.state.Checkout.country
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateCountry', value)
+                }
+            },
+            region: {
+                get() {
+                    return this.$store.state.Checkout.region
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updateRegion', value)
+                }
+            },
+            postalCode: {
+                get() {
+                    return this.$store.state.Checkout.postalCode
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updatePostalCode', value)
+                }
+            }
 
         }
     }
@@ -242,7 +306,8 @@
         justify-content: space-between;
         color: white;
     }
-    .total-row{
+
+    .total-row {
         display: flex;
         justify-content: space-between;
         color: white;
