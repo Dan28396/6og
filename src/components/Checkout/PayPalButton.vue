@@ -17,7 +17,7 @@
                 },
             ),
             finalCart: {
-                get(){
+                get() {
                     return this.$store.state.Cart.finalCart
                 }
             },
@@ -157,7 +157,7 @@
                         onError: err => {
                             // eslint-disable-next-line no-console
                             console.log(err);
-                        }
+                        },
                     })
                     .render('.paypal-buttons');
             }
@@ -167,5 +167,7 @@
 </script>
 
 <style scoped>
-
+    .paypal-buttons{
+        margin: auto;
+    }
 </style>

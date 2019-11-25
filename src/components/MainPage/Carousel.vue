@@ -10,8 +10,8 @@
                 <template v-slot:img>
                     <router-link :to="{name: 'item', params: {id: item.id}}"><img
                             class="d-block img-fluid w-100"
-                            :src='item.img'
-                            alt=""
+                            :src='item.preview_img'
+                            alt="item_preview"
                     ></router-link>
                 </template>
             </b-carousel-slide>

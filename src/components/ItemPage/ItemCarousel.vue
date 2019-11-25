@@ -5,12 +5,13 @@
                 controls
                 :interval="9999999"
                 class="carousel"
+                :img-height="700"
         >
-            <b-carousel-slide :key="item.id" v-for="(item) in items">
+            <b-carousel-slide v-for="(img, index) in items[id - 1].img" :key="index">
                 <template v-slot:img>
                     <img
-                            class="d-block img-fluid w-100"
-                            :src='item.img'
+                            class="d-block carousel__img"
+                            :src='img'
                             alt=""
                     >
                 </template>
@@ -25,6 +26,7 @@
 
     export default {
         name: "ItemCarousel",
+        props: ['id'],
         computed: mapState({
             items: state => state.Items.items,
         }),
@@ -42,6 +44,22 @@
         align-self: center;
         width: 100%;
         margin: auto;
+    }
+
+    .carousel__img {
+        width: 100%;
+        max-height: 100vh;
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        object-position: center;
+        margin: auto;
+    }
+
+    @media screen and (max-width: 1100px) {
+        .carousel__img {
+            max-height: 62vw;
+        }
     }
 
 

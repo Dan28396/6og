@@ -4,6 +4,7 @@ import store from "../store"
 import MainPage from "@/components/MainPage/MainPage";
 import Item from "@/components/ItemPage/Item";
 import CheckoutPage from "@/components/Checkout/CheckoutPage";
+import OopsPage from "@/components/OopsPage";
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ const router = new Router({
         {
             path: '/checkout',
             component: CheckoutPage
+        },
+        {
+            path: '*',
+            component: OopsPage
         },
 
     ]

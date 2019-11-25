@@ -2,19 +2,31 @@ const state = {
     items: [
         {
             id: 1,
-            img: require('../../public/mainpage/Carousel/Example.png'),
-            name: "6og Secure Hoodie Black",
-            price: 20,
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas purus id felis feugiat vulputate. Nullam mattis metus a risus faucibus ullamcorper. Nullam mattis metus a risus faucibus ullamcorper.",
-            selectedSize: "m",
+            img: [
+                require('../../public/item/item1/bag.png'),
+                require('../../public/item/item1/2t.jpg.png'),
+                require('../../public/item/item1/3t.png'),
+                require('../../public/item/item1/4t.png'),
+                require('../../public/item/item1/5.jpg'),
+            ],
+            preview_img: require('../../public/item/item1/bag.png'),
+            name: "6OG CHEST RIG 0001",
+            price: 35,
+            description: "COLOR: 013 BLACK" + "<br>" + "COUNTRY: RUSSIA" + "<br>" + "100% WATERPROOF",
+            selectedSize: "ONESIZE",
+            oneSize: true,
         },
         {
             id: 2,
-            img: require('../../public/mainpage/Carousel/Example.png'),
+            img: [
+                require('../../public/mainpage/Carousel/Example.png'),
+            ],
+            preview_img: require('../../public/mainpage/Carousel/Example.png'),
             name: "6og Secure T-shirt Black",
             price: 50,
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas purus id felis feugiat vulputate. Nullam mattis metus a risus faucibus ullamcorper. Pellentesque accumsan, est eu feugiat viverra, quam lectus iaculis eros, sit amet dignissim lectus orci non dui. Etiam nisl ante, vulputate eget lorem et, rutrum mollis metus. Vivamus sodales purus leo, in ultrices lacus pulvinar nec.",
+            description: "COLOR: 013 BLACK" + "<br>" + "COUNTRY: RUSSIA" + "<br>" + "100% WATERPROOF",
             selectedSize: "m",
+            oneSize: false,
         }
     ],
 }

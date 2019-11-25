@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="cart-icon">
         <img class="shopping-cart" src="../../../public/item/shopping-bag.svg" @click="toggleCartModal">
         <transition name="scale">
             <span class="shopping-cart__dot" v-if="items.length > 0"></span>
@@ -27,16 +27,20 @@
 
 <style scoped>
     .shopping-cart {
-        top: 60px;
-        right: 10%;
+        margin-top: -1px;
         width: 30px;
         cursor: pointer;
+        transition: all .2s;
+    }
+
+    .cart-icon:hover{
+        opacity: 0.6;
     }
 
 
     .shopping-cart__dot {
         position: absolute;
-        top: 4px;
+        top: 3px;
         right: 0;
         width: 8px;
         height: 8px;
@@ -44,6 +48,7 @@
         background-color: white;
         box-shadow: 0 0 0 2px #1c1b1b;
     }
+
 
     .scale-enter-active, .scale-leave-active {
         transition: all 0.3s ease-in-out;

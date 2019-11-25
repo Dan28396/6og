@@ -2,7 +2,7 @@
     <main>
         <router-link to="/" class="logo__sm"><img src="../../../public/mainpage/logo_the_future.png"></router-link>
         <section class="carousel-section">
-            <ItemCarousel/>
+            <ItemCarousel :id="id"/>
         </section>
         <section class="main-section">
             <div class="item-info">
@@ -11,7 +11,12 @@
                     <hr>
                     <p class="item-text">${{items[id - 1].price}}</p>
                     <hr>
-                    <p class="item-text">
+                    <p class="item-text" v-if="items[id - 1].oneSize === true"><span
+                            style="vertical-align: top">size</span>
+                        <input type="radio" name="size" id="onesize_check" @click="selectSize('s', id-1)"><label
+                                for="s_check"
+                                class="size-text" style="font-size: 2vw">ONESIZE</label></p>
+                    <p class="item-text" v-else>
                         <span style="vertical-align: top">size</span>
                         <input type="radio" name="size" id="s_check" @click="selectSize('s', id-1)"><label
                             for="s_check"
@@ -25,10 +30,8 @@
                             for="xl_check"
                             class="size-text">XL</label>
                     </p>
-
-
                 </div>
-                <p class="item-description">{{items[id - 1].description}}</p>
+                <p class="item-description" v-html="items[id - 1].description"></p>
                 <img class="item-table" src="../../../public/item/table.svg">
                 <button class="cart-button" @click="addProductToCart(items[id - 1])">ADD TO CART</button>
             </div>
@@ -64,6 +67,13 @@
             ...mapActions('Cart', [
                 'addProductToCart'
             ]),
+        },
+        mounted: function () {
+            if ((window.body.classList.contains('modal__active')) && (this.$store.state.Cart.showCartModal === false)) {
+                window.body.classList.remove('modal__active')
+            } else if (this.$store.state.Cart.showCartModal === true) {
+                window.body.classList.add('modal__active')
+            }
         }
     }
 </script>
@@ -77,13 +87,14 @@
         min-height: 100vh;
         display: flex;
         z-index: 2;
-        background: #EEEDED url("../../../public/mainpage/romb2_white.svg") no-repeat center center;
+        background: #EEEDED url("../../../public/mainpage/Resurs_1.svg") no-repeat center center;
         background-size: cover;
     }
 
     .carousel-section {
         width: 50%;
         display: flex;
+        background: white;
     }
 
     .main-section {
@@ -118,7 +129,7 @@
     }
 
     .item-description {
-        font-size: 1vw;
+        font-size: 1.5vw;
         text-align: left;
     }
 
@@ -136,7 +147,12 @@
         font-size: 2.3vw;
         text-align: left;
         font-weight: bold;
-        margin: 0 20px;
+        margin: auto 20px;
+    }
+
+    .size-text:hover {
+        transform: scale(1.1);
+        transition: all .3s;
     }
 
 
@@ -182,7 +198,7 @@
 
     @media all and (max-width: 1300px) {
         .item-info {
-            width: 95%;
+            width: 85%;
         }
 
         hr {
@@ -238,7 +254,7 @@
         }
 
         .item-description {
-            font-size: 2vw;
+            font-size: 3.5vw;
         }
 
         .size-text {

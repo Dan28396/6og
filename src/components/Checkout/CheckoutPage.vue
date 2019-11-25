@@ -1,6 +1,6 @@
 <template>
     <main>
-        <section class="checkout">
+        <section class="checkout" id="style-2">
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
                     <a @click="$router.go(-1)" class="checkout__return">
@@ -41,15 +41,17 @@
                 </div>
             </div>
         </section>
-        <section class="checkout-cart">
+        <section class="checkout-cart" id="style-1">
             <div class="checkout__items-wrap">
-                <div class="cart-item" v-for="(item, index) in items" :key="index + item.name">
-                    <img class="cart-item__img" :src="item.img">
-                    <div class="cart-item__info">
-                        <p class="cart-item__name">{{item.name}}</p>
-                        <div class="cart-item__params">
-                            <p class="cart-item__size">{{item.selectedSize}}</p>
-                            <p class="cart-item__price">${{item.price}}*{{item.quantity}}</p>
+                <div class="items-wrap">
+                    <div class="cart-item" v-for="(item, index) in items" :key="index + item.name">
+                        <img class="cart-item__img" :src="item.img">
+                        <div class="cart-item__info">
+                            <p class="cart-item__name">{{item.name}}</p>
+                            <div class="cart-item__params">
+                                <p class="cart-item__size" :class="{item__size: item.selectedSize.length > 3}">{{item.selectedSize}}</p>
+                                <p class="cart-item__price">${{item.price}}*{{item.quantity}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,14 +62,17 @@
                     </div>
                     <div class="subtotal-row">
                         <p>shipping</p>
-                        <p>$15</p>
+                        <p v-if="this.countryCode === this.RU">FREE</p>
+                        <p v-else>$15</p>
                     </div>
                 </div>
                 <div class="total-row">
                     <p>TOTAL</p>
-                    <p>${{total+15}}</p>
+                    <p v-if="this.countryCode === this.RU">${{total}}</p>
+                    <p v-else>${{total+15}}</p>
                 </div>
             </div>
+            <img class="logo__gog" src="../../../public/checkout/logo-white.png">
         </section>
     </main>
 </template>
@@ -80,9 +85,14 @@
     export default {
         name: "CheckoutPage",
         components: {PayPalButton},
+        data: function () {
+            return {
+                RU: "RU"
+            }
+        },
         computed: {
             ...mapGetters({
-                isCorrect: 'Checkout/countryCode',
+                countryCode: 'Checkout/countryCode',
                 total: 'Cart/cartTotalPrice',
             }),
             ...mapState({
@@ -152,7 +162,11 @@
                     this.$store.commit('Checkout/updatePostalCode', value)
                 }
             }
-
+        },
+        mounted: function () {
+            if (window.body.classList.contains('modal__active')) {
+                window.body.classList.remove('modal__active')
+            }
         }
     }
 </script>
@@ -171,30 +185,34 @@
         height: 100%;
         min-height: 100vh;
         display: flex;
-        justify-content: flex-end;
+        max-height: 100vh;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        direction: rtl
     }
 
     .checkout__content-wrap {
-        width: 60%;
+        width: 80%;
         height: 100%;
         max-height: 100vh;
         margin: 60px auto 0px;
         display: flex;
         flex-direction: column;
+        direction: ltr;
     }
 
     .checkout__items-wrap {
-        width: 85%;
+        width: 90%;
         height: 100%;
-        max-height: 100vh;
-        margin: 85px auto;
+        margin: 30px auto;
         display: flex;
         flex-direction: column;
     }
 
     .checkout__section {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         display: flex;
         flex-direction: column;
     }
@@ -210,11 +228,10 @@
 
 
     .checkout__pay-section {
-        width: 80%;
+        width: 50%;
         margin: auto;
 
     }
-
 
     .section-title {
         font-size: 18px;
@@ -233,7 +250,7 @@
     .section__address {
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
         column-gap: 10px;
     }
 
@@ -292,10 +309,12 @@
         height: 100%;
         background: #101010;
         min-height: 100vh;
+        max-height: 100vh;
         display: flex;
-        -webkit-box-pack: end;
-        -ms-flex-pack: end;
-        justify-content: flex-end;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        justify-content: space-between;
     }
 
     .cart-item__subtotal {
@@ -336,7 +355,7 @@
         text-align: left;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-around;
     }
 
     .cart-item__name {
@@ -368,6 +387,100 @@
 
     .cart-item__img {
         width: 100%;
+    }
+
+    .logo__gog {
+        width: 40%;
+        align-self: flex-end;
+        margin-bottom: 40px;
+        margin-right: 40px;
+        height: auto;
+        max-width: 250px;
+    }
+
+    .item__size{
+        font-size: 36px;
+    }
+
+    #style-1::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #101010;
+    }
+
+    #style-1::-webkit-scrollbar {
+        width: 8px;
+        background-color: #101010;
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: white;
+    }
+
+
+    #style-2::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
+
+    #style-2::-webkit-scrollbar {
+        width: 8px;
+        background-color: #ffffff;
+    }
+
+    #style-2::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: #101010;
+    }
+
+    @media all and (max-width: 1300px) {
+        main {
+            flex-direction: column-reverse;
+        }
+
+        .checkout {
+            width: 100%;
+            height: auto;
+            max-height: 99999px;
+        }
+
+        .cart-item__name {
+            font-size: 4vw;
+        }
+
+        .checkout-cart {
+            width: 100%;
+            height: auto;
+            min-height: auto;
+            max-height: 99999px;
+        }
+
+        .checkout__items-wrap {
+            margin: 30px auto;
+        }
+
+        .logo__gog {
+            width: 50%;
+        }
+
+        .checkout__pay-section {
+            width: auto;
+        }
+
+        .checkout__content-wrap {
+            max-height: 999999px;
+        }
+
+        .cart-item__size{
+            font-size: 5vw;
+        }
+        .cart-item__price{
+            font-size: 5vw;
+        }
     }
 
 </style>

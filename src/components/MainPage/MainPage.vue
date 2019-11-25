@@ -5,17 +5,26 @@
         <img class="logo__future" src="../../../public/mainpage/logobr.png">
         <img class="logo__capsule-future" src="../../../public/mainpage/logo_the_future.png">
         <Inst/>
-        <Carousel/>
+            <Carousel/>
     </main>
 </template>
 
 <script>
     import Carousel from "@/components/MainPage/Carousel";
     import Inst from "@/components/Inst";
+    import {mapState} from 'vuex'
 
     export default {
         name: "MainPage",
         components: {Inst, Carousel},
+        computed: mapState({
+            items: state => state.Items.items,
+        }),
+        mounted: function () {
+            if (window.body.classList.contains('modal__active')) {
+                window.body.classList.remove('modal__active')
+            }
+        }
     }
 </script>
 
@@ -66,6 +75,8 @@
         max-width: 400px;
         display: none;
     }
+
+
 
     @media all and (max-width: 850px) {
         .logo__gog, .logo__future {

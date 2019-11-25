@@ -54,12 +54,14 @@ const mutations = {
     pushProductToCart(state, product) {
         state.items.push({
             id: product.id,
-            img: product.img,
+            img: product.img[0],
             name: product.name,
             price: product.price,
             description: product.description,
             selectedSize: product.selectedSize,
-            quantity: 1
+            oneSize: product.oneSize,
+            quantity: 1,
+
         })
     },
 

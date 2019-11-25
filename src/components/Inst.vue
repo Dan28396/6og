@@ -16,6 +16,11 @@
         right: 7%;
         width: 30px;
         min-width: 30px;
+        transition: all .2s;
+    }
+
+    .logo__inst:hover {
+        opacity: 0.6;
     }
 
     .logo__inst__static img {

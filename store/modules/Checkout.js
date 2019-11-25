@@ -263,15 +263,22 @@ const state = {
         }, {Code: "EH", Name: "Western Sahara"}, {Code: "YE", Name: "Yemen"}, {
             Code: "ZM",
             Name: "Zambia"
-        }, {Code: "ZW", Name: "Zimbabwe"}
+        }, {Code: "ZW", Name: "Zimbabwe"},
+        {Code: "RU", Name: "Россия"},
+        {Code: "RU", Name: "Российская Федерация"}
     ],
 }
 
 
 const getters = {
     countryCode: (state) => {
-        const country = state.countries.find(country => (country.Name.includes(state.country))) || '';
-        return country.Code
+        if (state.country === null) {
+            const country = state.countries.find(country => (country.Name.includes(state.country))) || '';
+            return country.Code
+        } else {
+            const country = state.countries.find(country => (country.Name.trim().toLowerCase().includes(state.country.trim().toLowerCase()))) || '';
+            return country.Code
+        }
     },
 
 }

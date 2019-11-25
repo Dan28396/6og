@@ -281,6 +281,23 @@
         margin: 0;
     }
 
+    .cart-wrapper__main::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #101010;
+    }
+
+    .cart-wrapper__main::-webkit-scrollbar {
+        width: 8px;
+        background-color: #101010;
+    }
+
+    .cart-wrapper__main::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color: white;
+    }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         /* display: none; <- Crashes Chrome on hover */
