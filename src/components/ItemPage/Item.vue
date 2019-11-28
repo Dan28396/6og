@@ -37,7 +37,7 @@
             </div>
         </section>
 
-        <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/logo.png"></router-link>
+        <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/6og.svg"></router-link>
         <CartModal/>
         <CartInstButtons/>
     </main>
@@ -80,7 +80,6 @@
 
 <style scoped>
     main {
-
         position: relative;
         width: 100%;
         height: 100%;
@@ -123,13 +122,13 @@
     }
 
     .item-text {
-        font-size: 1.5vw;
+        font-size: 2vw;
         text-align: left;
         margin: 0;
     }
 
     .item-description {
-        font-size: 1.5vw;
+        font-size: 1.3vw;
         text-align: left;
     }
 
@@ -236,7 +235,7 @@
         }
 
         .carousel-section {
-            width: 70%;
+            width: 100%;
             margin-bottom: 30px;
         }
 
@@ -254,7 +253,7 @@
         }
 
         .item-description {
-            font-size: 3.5vw;
+            font-size: 3vw;
         }
 
         .size-text {

@@ -59,6 +59,7 @@
     @media screen and (max-width: 1100px) {
         .carousel__img {
             max-height: 62vw;
+            width: auto;
         }
     }
 

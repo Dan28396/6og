@@ -1,22 +1,22 @@
 <template>
     <main>
         <img class="logo__capsule" src="../../../public/mainpage/logotl.png">
-        <img class="logo__gog" src="../../../public/mainpage/logo.png">
+        <img class="logo__gog" src="../../../public/mainpage/6og.svg">
         <img class="logo__future" src="../../../public/mainpage/logobr.png">
         <img class="logo__capsule-future" src="../../../public/mainpage/logo_the_future.png">
-        <Inst/>
-            <Carousel/>
+        <AppInstButton :name="'app'"/>
+        <Carousel/>
     </main>
 </template>
 
 <script>
     import Carousel from "@/components/MainPage/Carousel";
-    import Inst from "@/components/Inst";
     import {mapState} from 'vuex'
+    import AppInstButton from "@/components/MainPage/AppInstButton";
 
     export default {
         name: "MainPage",
-        components: {Inst, Carousel},
+        components: {AppInstButton, Carousel},
         computed: mapState({
             items: state => state.Items.items,
         }),
@@ -77,7 +77,6 @@
     }
 
 
-
     @media all and (max-width: 850px) {
         .logo__gog, .logo__future {
             display: none;
@@ -93,6 +92,9 @@
         .logo__capsule-future {
             display: block;
         }
+
+
+
 
     }
 </style>

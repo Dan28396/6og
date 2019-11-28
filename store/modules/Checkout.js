@@ -7,6 +7,8 @@ const state = {
     country: null,
     region: null,
     postalCode: null,
+    shipCost: 15,
+    isValidated: null,
     countries: [
         {Code: "AF", Name: "Afghanistan"}, {Code: "AX", Name: "\u00c5land Islands"}, {
             Code: "AL",
@@ -288,6 +290,12 @@ const actions = {}
 
 
 const mutations = {
+    setShipCost(state, cost) {
+        state.shipCost = cost
+    },
+    setValidate(state, validated) {
+        state.isValidated = validated
+    },
     updateEmail(state, email) {
         state.email = email
     },

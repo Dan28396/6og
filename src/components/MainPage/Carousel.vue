@@ -6,7 +6,7 @@
                 :interval="99999999999"
                 class="carousel"
         >
-            <b-carousel-slide :key="item.id" v-for="(item) in items">
+            <b-carousel-slide :key="item.id" v-for="(item) in items" :text="item.name">
                 <template v-slot:img>
                     <router-link :to="{name: 'item', params: {id: item.id}}"><img
                             class="d-block img-fluid w-100"

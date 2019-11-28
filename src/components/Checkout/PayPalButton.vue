@@ -7,9 +7,11 @@
 
     export default {
         name: "PayPalButton",
+        props: ['isInvalid'],
         computed: {
             ...mapState({
                 checkoutStatus: state => state.Cart.checkoutStatus,
+                shipCost: state => state.Checkout.shipCost
             }),
             ...mapGetters({
                     total: 'Cart/cartTotalPrice',
@@ -84,7 +86,8 @@
                 set(value) {
                     this.$store.commit('updatePostalCode', value)
                 }
-            }
+            },
+
         },
         mounted: function () {
             const script = document.createElement("script");
@@ -93,11 +96,30 @@
             script.addEventListener("load", this.setLoaded);
             document.body.appendChild(script);
         },
+        //TODO Доделать отключение кнопки при не прохождении валидации
         methods: {
             setLoaded: function () {
                 const that = this;
                 window.paypal
                     .Buttons({
+                        onInit: function(data, actions) {
+
+                            // Disable the buttons
+                            actions.disable();
+
+                        },
+                        onClick: function (data, actions) {
+                            const isInvalid = that.isInvalid;
+                            /* eslint-disable no-console */
+                            console.log(isInvalid)
+
+                            if (!isInvalid) {
+                                actions.enable();
+                            } else {
+                                actions.disable();
+                            }
+                        },
+
                         createOrder: function (data, actions) {
                             const total = that.total + '';
                             const email = that.email + '';
@@ -109,6 +131,8 @@
                             const countryCode = that.countryCode + '';
                             const postalCode = that.postalCode + '';
                             const finalCart = that.finalCart;
+                            const shipCost = that.shipCost + '';
+                            const finalCost = (that.total + that.shipCost) + '';
                             return actions.order.create({
                                 intent: "CAPTURE",
                                 application_context: {
@@ -125,11 +149,15 @@
                                     {
                                         amount: {
                                             currency_code: 'USD',
-                                            value: total,
+                                            value: finalCost,
                                             breakdown: {
                                                 item_total: {
                                                     currency_code: 'USD',
                                                     value: total
+                                                },
+                                                shipping: {
+                                                    currency_code: 'USD',
+                                                    value: shipCost
                                                 }
                                             }
                                         },
@@ -167,7 +195,7 @@
 </script>
 
 <style scoped>
-    .paypal-buttons{
+    .paypal-buttons {
         margin: auto;
     }
 </style>

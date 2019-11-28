@@ -4,28 +4,50 @@
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
                     <a @click="$router.go(-1)" class="checkout__return">
-                        <img class="checkout__arrow" src="../../../public/checkout/back-arrow.svg">
-                        <span>Return to cart</span>
+                        <img class="checkout__arrow-img" src="../../../public/checkout/next.svg">
+                        Return to item
                     </a>
                 </div>
                 <div class="checkout__section">
                     <h2 class="section-title">Contact information</h2>
-                    <input class="input-wrap__input" placeholder="Email" v-model="email">
+                    <input class="input-wrap__input" placeholder="Email" v-model.trim="$v.email.$model">
+                    <p class="error" v-if="(!$v.email.required) && ($v.email.$dirty)">Field is required.</p>
+                    <p class="error" v-if="!$v.email.email">Email is incorrect.</p>
                 </div>
                 <div class="checkout__section">
                     <h2 class="section-title">Shipping address</h2>
                     <div class="section__name">
-                        <input class="input-wrap__input" placeholder="First name" v-model="firstName">
-                        <input class="input-wrap__input" placeholder="Last name" v-model="lastName">
+                        <div>
+                            <input class="input-wrap__input" placeholder="First name" v-model="$v.firstName.$model">
+                            <p class="error" v-if="(!$v.firstName.required) && ($v.firstName.$dirty)">Field is
+                                required.</p>
+                        </div>
+                        <div><input class="input-wrap__input" placeholder="Last name" v-model="$v.lastName.$model">
+                            <p class="error" v-if="(!$v.lastName.required) && ($v.lastName.$dirty)">Field is
+                                required.</p>
+                        </div>
                     </div>
-                    <input class="input-wrap__input" placeholder="Address" v-model="address">
-                    <input class="input-wrap__input" placeholder="City" v-model="city">
+                    <div><input class="input-wrap__input" placeholder="Address" v-model="$v.address.$model">
+                        <p class="error" v-if="(!$v.address.required) && ($v.address.$dirty)">Field is required.</p>
+                    </div>
+                    <div><input class="input-wrap__input" placeholder="City" v-model="$v.city.$model">
+                        <p class="error" v-if="(!$v.city.required) && ($v.city.$dirty)">Field is required.</p></div>
+
                     <div class="section__address">
-                        <input class="input-wrap__input"
-                               placeholder="Country"
-                               v-model="country">
-                        <input class="input-wrap__input" placeholder="Region" v-model="region">
-                        <input class="input-wrap__input" placeholder="Postal code" v-model="postalCode">
+                        <div>
+                            <input class="input-wrap__input" placeholder="Country" @change="setShipCost"
+                                   v-model="$v.country.$model">
+                            <p class="error" v-if="(!$v.country.required) && ($v.country.$dirty)">Field is required.</p>
+                        </div>
+                        <div>
+                            <input class="input-wrap__input" placeholder="Region" v-model="$v.region.$model">
+                            <p class="error" v-if="(!$v.region.required) && ($v.region.$dirty)">Field is required.</p>
+                        </div>
+                        <div>
+                            <input class="input-wrap__input" placeholder="Postal code" v-model="$v.postalCode.$model">
+                            <p class="error" v-if="(!$v.postalCode.required) && ($v.postalCode.$dirty)">Field is
+                                required.</p>
+                        </div>
                     </div>
                 </div>
                 <h2 class="section-title">Shipping</h2>
@@ -35,9 +57,8 @@
                 </div>
                 <div class="checkout__section">
                     <div class="checkout__pay-section">
-                        <PayPalButton/>
+                        <PayPalButton :isInvalid="this.$v.$invalid"/>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -49,7 +70,8 @@
                         <div class="cart-item__info">
                             <p class="cart-item__name">{{item.name}}</p>
                             <div class="cart-item__params">
-                                <p class="cart-item__size" :class="{item__size: item.selectedSize.length > 3}">{{item.selectedSize}}</p>
+                                <p class="cart-item__size" :class="{item__size: item.selectedSize.length > 3}">
+                                    {{item.selectedSize}}</p>
                                 <p class="cart-item__price">${{item.price}}*{{item.quantity}}</p>
                             </div>
                         </div>
@@ -62,17 +84,17 @@
                     </div>
                     <div class="subtotal-row">
                         <p>shipping</p>
-                        <p v-if="this.countryCode === this.RU">FREE</p>
+                        <p v-if="this.countryCode === 'RU'">FREE</p>
                         <p v-else>$15</p>
                     </div>
                 </div>
                 <div class="total-row">
                     <p>TOTAL</p>
-                    <p v-if="this.countryCode === this.RU">${{total}}</p>
-                    <p v-else>${{total+15}}</p>
+                    <p v-if="this.countryCode === 'RU'">${{total}}</p>
+                    <p v-else>${{total+shipCost}}</p>
                 </div>
             </div>
-            <img class="logo__gog" src="../../../public/checkout/logo-white.png">
+            <img class="logo__gog" src="../../../public/mainpage/6og_white.svg">
         </section>
     </main>
 </template>
@@ -81,13 +103,45 @@
     //TODO СДЕЛАТЬ ПРОВЕРКУ НА ПРАВИЛЬНОСТЬ ЗАПОЛНЕНИЯ СТРАНЫ
     import {mapGetters, mapState} from 'vuex'
     import PayPalButton from "@/components/Checkout/PayPalButton";
+    import {required, email} from 'vuelidate/lib/validators'
 
     export default {
         name: "CheckoutPage",
         components: {PayPalButton},
-        data: function () {
-            return {
-                RU: "RU"
+        methods: {
+            setShipCost: function () {
+                if (this.countryCode === 'RU') {
+                    this.$store.commit("Checkout/setShipCost", 15);
+                } else {
+                    this.$store.commit("Checkout/setShipCost", 0);
+                }
+            }
+        },
+        validations: {
+            email: {
+                required,
+                email
+            },
+            firstName: {
+                required,
+            },
+            lastName: {
+                required
+            },
+            address: {
+                required
+            },
+            city: {
+                required
+            },
+            country: {
+                required
+            },
+            region: {
+                required
+            },
+            postalCode: {
+                required
             }
         },
         computed: {
@@ -97,6 +151,7 @@
             }),
             ...mapState({
                 items: state => state.Cart.items,
+                shipCost: state => state.Checkout.shipCost,
             }),
             email: {
                 get() {
@@ -161,7 +216,7 @@
                 set(value) {
                     this.$store.commit('Checkout/updatePostalCode', value)
                 }
-            }
+            },
         },
         mounted: function () {
             if (window.body.classList.contains('modal__active')) {
@@ -189,7 +244,7 @@
         flex-direction: column;
         overflow-x: hidden;
         overflow-y: auto;
-        direction: rtl
+        direction: rtl;
     }
 
     .checkout__content-wrap {
@@ -200,6 +255,7 @@
         display: flex;
         flex-direction: column;
         direction: ltr;
+
     }
 
     .checkout__items-wrap {
@@ -257,17 +313,19 @@
     .checkout__return {
         font-size: 12px;
         color: #101010;
-        text-align: left;
         cursor: pointer;
         display: flex;
-        width: 120px;
+        margin: 0;
+        line-height: 12px;
     }
 
-    .checkout__arrow {
+
+    .checkout__arrow-img {
         width: 12px;
-        margin-right: 7px;
+        height: 12px;
+        padding: 0;
+        margin: 0 5px 0 0;
         line-height: 12px;
-        vertical-align: text-bottom;
     }
 
     .input-wrap__input {
@@ -398,7 +456,7 @@
         max-width: 250px;
     }
 
-    .item__size{
+    .item__size {
         font-size: 36px;
     }
 
@@ -435,6 +493,14 @@
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: #101010;
+    }
+
+    .error {
+        color: #e60000;
+        font-size: 12px;
+        text-align: left;
+        margin-top: -13px;
+        margin-left: 5px;
     }
 
     @media all and (max-width: 1300px) {
@@ -475,10 +541,11 @@
             max-height: 999999px;
         }
 
-        .cart-item__size{
+        .cart-item__size {
             font-size: 5vw;
         }
-        .cart-item__price{
+
+        .cart-item__price {
             font-size: 5vw;
         }
     }

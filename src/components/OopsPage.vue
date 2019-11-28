@@ -1,6 +1,6 @@
 <template>
         <main>
-            <h1 class="oops">Oops... 404</h1>
+            <h1 class="oops">There's no future here... 404</h1>
         </main>
 </template>
 

@@ -33,6 +33,10 @@
         transition: all .2s;
     }
 
+    .cart-icon{
+        position: relative;
+    }
+
     .cart-icon:hover{
         opacity: 0.6;
     }

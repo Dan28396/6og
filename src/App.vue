@@ -12,7 +12,9 @@
     import 'bootstrap/dist/css/bootstrap.css'
     import 'bootstrap-vue/dist/bootstrap-vue.css'
     import vClickOutside from 'v-click-outside'
+    import Vuelidate from 'vuelidate'
 
+    Vue.use(Vuelidate)
     Vue.use(vClickOutside)
     Vue.use(BootstrapVue)
 
@@ -47,14 +49,23 @@
         transform: rotate(180deg);
         width: 31px;
         height: 25px;
-        margin-left: 20px;
     }
+
     .carousel-control-next {
         transition: all 0.2s;
     }
+
     .carousel-control-next:hover {
-        transform: translate(15px);
+        transform: translate(10px);
         transition: all 0.2s;
+    }
+
+    .carousel-caption {
+        position: static!important;
+        padding: 0;
+        margin: 0;
+        color: #101010;
+        font-weight: bold;
     }
 
     .carousel-control-prev-icon {
@@ -62,17 +73,18 @@
         width: 31px;
         height: 25px;
         transition: all 0.2s;
-        margin-right: 20px;
     }
+
     .carousel-control-prev {
         transition: all 0.2s;
     }
+
     .carousel-control-prev:hover {
-        transform: translate(-15px);
+        transform: translate(-10px);
         transition: all 0.2s;
     }
 
-    .modal__active{
+    .modal__active {
         overflow: hidden;
     }
 

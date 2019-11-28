@@ -101,7 +101,7 @@
         position: fixed;
         top: 0;
         right: 0;
-        height: 100vh;
+        height: 100%;
         z-index: 5;
         background: #101010;
         box-shadow: 2px 0 10px rgba(54, 54, 54, 0.2), -2px 0 10px rgba(54, 54, 54, 0.2);
@@ -274,7 +274,9 @@
 
     input:disabled {
         background: white;
-
+        color: white;
+        -webkit-text-fill-color: white;
+        opacity: 1;
     }
 
     p {

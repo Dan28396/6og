@@ -1,6 +1,6 @@
 <template>
     <div class="icons-wrap">
-        <ShoppingCartIcon :class="{}"/>
+        <ShoppingCartIcon/>
         <Inst :class="{logo__inst__static: true}"/>
     </div>
 
@@ -24,7 +24,6 @@
         right: 7%;
         display: grid;
         grid-template-columns: 30px 30px;
-        width: 30px;
         height: 30px;
         column-gap: 10px;
     }
@@ -35,9 +34,6 @@
         }
     }
     @media all and (max-width: 850px) {
-        .shopping-cart {
-            top: 40px
-        }
         .icons-wrap{
             right: 60px;
         }
