@@ -7,7 +7,6 @@ const state = {
     country: null,
     region: null,
     postalCode: null,
-    shipCost: 15,
     isValidated: null,
     countries: [
         {Code: "AF", Name: "Afghanistan"}, {Code: "AX", Name: "\u00c5land Islands"}, {
@@ -282,6 +281,14 @@ const getters = {
             return country.Code
         }
     },
+
+    shipCost: (state, getters) => {
+        if (getters.countryCode === "RU") {
+            return 0
+        } else {
+            return 15
+        }
+    }
 
 }
 

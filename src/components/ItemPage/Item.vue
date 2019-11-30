@@ -13,8 +13,8 @@
                     <hr>
                     <p class="item-text" v-if="items[id - 1].oneSize === true"><span
                             style="vertical-align: top">size</span>
-                        <input type="radio" name="size" id="onesize_check" @click="selectSize('s', id-1)"><label
-                                for="s_check"
+                        <input type="radio" name="size" id="onesize_check" checked @click="selectSize('s', id-1)"><label
+                                for="onesize_check"
                                 class="size-text" style="font-size: 2vw">ONESIZE</label></p>
                     <p class="item-text" v-else>
                         <span style="vertical-align: top">size</span>

@@ -1,22 +1,24 @@
 <template>
     <main>
         <router-link to="/"><img class="logo__gog" src="../../../public/mainpage/6og.svg"></router-link>
-        <img class="logo__future" src="../../../public/mainpage/logobr.png">
-        <img class="logo__gog-future" src="../../../public/mainpage/logo_the_future.png">
+        <img class="logo__future" src="../../../public/mainpage/future.svg">
+        <router-link to="/" class="logo__gog-future"><img class="logo__capsule-future__img"
+                                                          src="../../../public/mainpage/6og-future.svg">
+        </router-link>
         <AppInstButton :name="'main'"/>
         <div class="wrap__desktop">
             <div class="step-wrap">
                 <div class="step">
                     <p class="text">step 1</p>
-                    <img src="../../../public/mainpage/app/qr-step1.png" class="step-img">
-                    <p class="text">1. Scan the QR-code to download
+                    <img src="../../../public/mainpage/app/qr-apps-apple-com.svg" class="step-img">
+                    <p>1. Scan the QR-code to download
                         <span style="font-weight: bold">6OG AR</span> application to explore the
                         unknown future with AR technology.</p>
                 </div>
                 <div class="step">
                     <p class="text">step 2</p>
-                    <img src="../../../public/mainpage/app/qr-step2.png" class="step-img">
-                    <p class="text">2. Scan the QR-code to download
+                    <img src="../../../public/mainpage/app/qr-verisium-com.svg" class="step-img">
+                    <p>2. Scan the QR-code to download
                         the <span style="font-weight: bold">VERISIUM</span> application to get
                         the exclusive information using NFC technology.</p>
                 </div>
@@ -26,7 +28,7 @@
             <div class="step-wrap">
                 <div class="step">
                     <p class="text2">step 1</p>
-                    <p class="text">1. Click to download
+                    <p>1. Click to download
                         <span style="font-weight: bold">6OG AR</span> application to explore the
                         unknown future with AR technology.</p>
                     <a href="https://apps.apple.com/us/app/6og-ar/id1483329987" class="step-img__mobile__wrap"><img
@@ -35,7 +37,7 @@
                 </div>
                 <div class="step">
                     <p class="text2">step 2</p>
-                    <p class="text">2. Click to download
+                    <p>2. Click to download
                         the <span style="font-weight: bold">VERISIUM</span> application to get
                         the exclusive information using NFC technology.</p>
                     <a href="https://verisium.com/getapp/" class="step-img__mobile__wrap"><img
@@ -43,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <img class="logo__capsule" src="../../../public/mainpage/logotl.png">
+        <img class="logo__capsule" src="../../../public/mainpage/capsule.svg">
     </main>
 </template>
 
@@ -68,6 +70,7 @@
         justify-content: center;
         align-content: center;
         flex-direction: column;
+        padding: 160px 0;
     }
 
     .wrap__desktop {
@@ -75,6 +78,16 @@
         flex-direction: column;
         justify-content: center;
         align-content: center;
+    }
+
+    .text {
+        color: white;
+        display: inline-block;
+        background: #101010;
+        padding: 0 10px 2px;
+        text-align: left;
+        align-self: center;
+
     }
 
     .wrap__mobile {
@@ -87,7 +100,7 @@
 
     .AppButton {
         position: absolute;
-        top: 7%;
+        top: 40px;
         left: calc(50% - 35px);
     }
 
@@ -107,6 +120,8 @@
     .step-img {
         margin-bottom: 30px;
         align-self: center;
+        width: 100%;
+        max-width: 294px;
     }
 
     .logo__capsule {
@@ -137,10 +152,10 @@
 
     .logo__gog-future {
         position: absolute;
-        top: 30px;
+        top: 40px;
         left: 7%;
         width: 60%;
-        max-width: 400px;
+        max-width: 350px;
         display: none;
     }
 
@@ -168,12 +183,21 @@
         width: 100%;
     }
 
+    .logo__capsule-future__img {
+        width: 100%;
+    }
+
     @media all and (max-width: 850px) {
         main {
             justify-content: flex-start;
+            padding: 0;
         }
 
         .logo__gog, .logo__future {
+            display: none;
+        }
+
+        .logo__capsule {
             display: none;
         }
 
@@ -189,12 +213,34 @@
             position: static;
             margin: 40px 0 30px 7%;
         }
+    }
 
+    @media all and (max-height: 760px) {
+        main {
+            justify-content: flex-start;
+            padding: 0;
+        }
+
+        .logo__gog, .logo__future {
+            display: none;
+        }
 
         .logo__capsule {
             display: none;
         }
 
+        .logo__capsule {
+            top: auto;
+            bottom: 30px;
+            left: 7%;
+
+        }
+
+        .logo__gog-future {
+            display: block;
+            position: static;
+            margin: 40px 0 30px 7%;
+        }
     }
 
     @media all and (max-width: 750px) {
@@ -209,8 +255,9 @@
 
     @media all and (max-width: 400px) {
         .logo__gog-future {
-            margin: 30px 0 30px 7%;
+            margin: 40px 0 30px 7%;
         }
     }
+
 
 </style>

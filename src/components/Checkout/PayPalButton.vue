@@ -11,11 +11,11 @@
         computed: {
             ...mapState({
                 checkoutStatus: state => state.Cart.checkoutStatus,
-                shipCost: state => state.Checkout.shipCost
             }),
             ...mapGetters({
                     total: 'Cart/cartTotalPrice',
                     countryCode: 'Checkout/countryCode',
+                    shipCost: 'Checkout/shipCost'
                 },
             ),
             finalCart: {
@@ -90,106 +90,78 @@
 
         },
         mounted: function () {
-            const script = document.createElement("script");
-            script.src =
-                "https://www.paypal.com/sdk/js?client-id=AUN0ZNH2uaFXOkOv5OEkalutRlRefISeWD7TtaOtVwEEItjLsk8guQKjp0JiGCmNCgpo4Bz8TlV-WaNw&currency=USD";
-            script.addEventListener("load", this.setLoaded);
-            document.body.appendChild(script);
-        },
-        //TODO Доделать отключение кнопки при не прохождении валидации
-        methods: {
-            setLoaded: function () {
-                const that = this;
-                window.paypal
-                    .Buttons({
-                        onInit: function(data, actions) {
-
-                            // Disable the buttons
-                            actions.disable();
-
+            var that = this;
+            window.paypal.Buttons({
+                createOrder: function (data, actions) {
+                    const total = that.total + '';
+                    const email = that.email + '';
+                    const firstName = that.firstName + '';
+                    const lastName = that.lastName + '';
+                    const address = that.address + '';
+                    const city = that.city + '';
+                    const region = that.region + '';
+                    const countryCode = that.countryCode + '';
+                    const postalCode = that.postalCode + '';
+                    const finalCart = that.finalCart;
+                    const shipCost = that.shipCost + '';
+                    const finalCost = (that.total + that.shipCost) + '';
+                    return actions.order.create({
+                        intent: "CAPTURE",
+                        application_context: {
+                            shipping_preference: "SET_PROVIDED_ADDRESS",
                         },
-                        onClick: function (data, actions) {
-                            const isInvalid = that.isInvalid;
-                            /* eslint-disable no-console */
-                            console.log(isInvalid)
-
-                            if (!isInvalid) {
-                                actions.enable();
-                            } else {
-                                actions.disable();
-                            }
+                        payer: {
+                            name: {
+                                given_name: firstName,
+                                surname: lastName
+                            },
+                            email_address: email
                         },
-
-                        createOrder: function (data, actions) {
-                            const total = that.total + '';
-                            const email = that.email + '';
-                            const firstName = that.firstName + '';
-                            const lastName = that.lastName + '';
-                            const address = that.address + '';
-                            const city = that.city + '';
-                            const region = that.region + '';
-                            const countryCode = that.countryCode + '';
-                            const postalCode = that.postalCode + '';
-                            const finalCart = that.finalCart;
-                            const shipCost = that.shipCost + '';
-                            const finalCost = (that.total + that.shipCost) + '';
-                            return actions.order.create({
-                                intent: "CAPTURE",
-                                application_context: {
-                                    shipping_preference: "SET_PROVIDED_ADDRESS",
-                                },
-                                payer: {
-                                    name: {
-                                        given_name: firstName,
-                                        surname: lastName
-                                    },
-                                    email_address: email
-                                },
-                                purchase_units: [
-                                    {
-                                        amount: {
-                                            currency_code: 'USD',
-                                            value: finalCost,
-                                            breakdown: {
-                                                item_total: {
-                                                    currency_code: 'USD',
-                                                    value: total
-                                                },
-                                                shipping: {
-                                                    currency_code: 'USD',
-                                                    value: shipCost
-                                                }
-                                            }
+                        purchase_units: [
+                            {
+                                amount: {
+                                    currency_code: 'RUB',
+                                    value: finalCost,
+                                    breakdown: {
+                                        item_total: {
+                                            currency_code: 'RUB',
+                                            value: total
                                         },
                                         shipping: {
-                                            address: {
-                                                address_line_1: address,
-                                                admin_area_2: city,
-                                                admin_area_1: region,
-                                                postal_code: postalCode,
-                                                country_code: countryCode
-                                            }
-                                        },
-                                        items: finalCart
+                                            currency_code: 'RUB',
+                                            value: shipCost
+                                        }
                                     }
-                                ],
-                            });
-                        },
-                        onApprove: async (data, actions) => {
-                            const order = await actions.order.capture();
-                            this.data;
-                            this.paidFor = true;
-                            // eslint-disable-next-line no-console
-                            console.log(order);
-                        },
-                        onError: err => {
-                            // eslint-disable-next-line no-console
-                            console.log(err);
-                        },
-                    })
-                    .render('.paypal-buttons');
-            }
+                                },
+                                shipping: {
+                                    address: {
+                                        address_line_1: address,
+                                        admin_area_2: city,
+                                        admin_area_1: region,
+                                        postal_code: postalCode,
+                                        country_code: countryCode
+                                    }
+                                },
+                                items: finalCart
+                            }
+                        ],
+                    });
+                },
+                onApprove: async (data, actions) => {
+                    const order = await actions.order.capture();
+                    this.data;
+                    this.paidFor = true;
+                    // eslint-disable-next-line no-console
+                    console.log(order);
+                },
+                onError: err => {
+                    // eslint-disable-next-line no-console
+                    console.log(err);
+                },
+            }).render('.paypal-buttons')
         },
+        //TODO Доделать отключение кнопки при не прохождении валидации
+        methods: {}
     }
 
 </script>

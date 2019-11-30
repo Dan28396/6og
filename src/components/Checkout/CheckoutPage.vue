@@ -35,7 +35,7 @@
 
                     <div class="section__address">
                         <div>
-                            <input class="input-wrap__input" placeholder="Country" @change="setShipCost"
+                            <input class="input-wrap__input" placeholder="Country"
                                    v-model="$v.country.$model">
                             <p class="error" v-if="(!$v.country.required) && ($v.country.$dirty)">Field is required.</p>
                         </div>
@@ -84,14 +84,12 @@
                     </div>
                     <div class="subtotal-row">
                         <p>shipping</p>
-                        <p v-if="this.countryCode === 'RU'">FREE</p>
-                        <p v-else>$15</p>
+                        <p>${{shipCost}}</p>
                     </div>
                 </div>
                 <div class="total-row">
                     <p>TOTAL</p>
-                    <p v-if="this.countryCode === 'RU'">${{total}}</p>
-                    <p v-else>${{total+shipCost}}</p>
+                    <p>${{total+shipCost}}</p>
                 </div>
             </div>
             <img class="logo__gog" src="../../../public/mainpage/6og_white.svg">
@@ -108,15 +106,6 @@
     export default {
         name: "CheckoutPage",
         components: {PayPalButton},
-        methods: {
-            setShipCost: function () {
-                if (this.countryCode === 'RU') {
-                    this.$store.commit("Checkout/setShipCost", 15);
-                } else {
-                    this.$store.commit("Checkout/setShipCost", 0);
-                }
-            }
-        },
         validations: {
             email: {
                 required,
@@ -148,10 +137,10 @@
             ...mapGetters({
                 countryCode: 'Checkout/countryCode',
                 total: 'Cart/cartTotalPrice',
+                shipCost: 'Checkout/shipCost'
             }),
             ...mapState({
                 items: state => state.Cart.items,
-                shipCost: state => state.Checkout.shipCost,
             }),
             email: {
                 get() {

@@ -49,7 +49,7 @@
         width: 8px;
         height: 8px;
         border-radius: 100%;
-        background-color: white;
+        background-color: #eeeded;
         box-shadow: 0 0 0 2px #1c1b1b;
     }
 

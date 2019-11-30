@@ -1,9 +1,9 @@
 <template>
     <main>
-        <img class="logo__capsule" src="../../../public/mainpage/logotl.png">
+        <img class="logo__capsule" src="../../../public/mainpage/capsule.svg">
         <img class="logo__gog" src="../../../public/mainpage/6og.svg">
-        <img class="logo__future" src="../../../public/mainpage/logobr.png">
-        <img class="logo__capsule-future" src="../../../public/mainpage/logo_the_future.png">
+        <img class="logo__future" src="../../../public/mainpage/future.svg">
+        <router-link to="/" class="logo__capsule-future"><img class="logo__capsule-future__img" src="../../../public/mainpage/6og-future.svg"></router-link>
         <AppInstButton :name="'app'"/>
         <Carousel/>
     </main>
@@ -39,6 +39,7 @@
         display: flex;
         background: #EEEDED url("../../../public/mainpage/Resurs_1.svg") no-repeat center center;
         background-size: cover;
+        padding: 160px 0;
     }
 
     .logo__capsule {
@@ -69,15 +70,22 @@
 
     .logo__capsule-future {
         position: absolute;
-        top: 30px;
+        top: 40px;
         left: 7%;
         width: 60%;
         max-width: 400px;
         display: none;
     }
 
+    .logo__capsule-future__img {
+        width: 100%;
+    }
 
     @media all and (max-width: 850px) {
+        main{
+            padding: 0;
+        }
+
         .logo__gog, .logo__future {
             display: none;
         }

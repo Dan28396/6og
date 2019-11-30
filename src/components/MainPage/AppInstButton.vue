@@ -19,7 +19,7 @@
 <style scoped>
     .app-inst__wrap {
         position: absolute;
-        top: 7%;
+        top: 40px;
         right: 7%;
         display: grid;
         grid-template-columns: 1fr 30px;
