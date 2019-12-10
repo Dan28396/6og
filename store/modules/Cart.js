@@ -71,7 +71,7 @@ const mutations = {
             name: item.name,
             unit_amount:
                 {
-                    currency_code: "RUB",
+                    currency_code: "USD",
                     value: item.price + ''
                 },
             quantity: item.quantity + '',

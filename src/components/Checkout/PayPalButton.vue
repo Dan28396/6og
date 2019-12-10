@@ -91,6 +91,7 @@
         },
         mounted: function () {
             var that = this;
+            // var paypalActions;
             window.paypal.Buttons({
                 createOrder: function (data, actions) {
                     const total = that.total + '';
@@ -120,15 +121,15 @@
                         purchase_units: [
                             {
                                 amount: {
-                                    currency_code: 'RUB',
+                                    currency_code: 'USD',
                                     value: finalCost,
                                     breakdown: {
                                         item_total: {
-                                            currency_code: 'RUB',
+                                            currency_code: 'USD',
                                             value: total
                                         },
                                         shipping: {
-                                            currency_code: 'RUB',
+                                            currency_code: 'USD',
                                             value: shipCost
                                         }
                                     }
@@ -147,17 +148,18 @@
                         ],
                     });
                 },
-                onApprove: async (data, actions) => {
-                    const order = await actions.order.capture();
-                    this.data;
-                    this.paidFor = true;
-                    // eslint-disable-next-line no-console
-                    console.log(order);
-                },
-                onError: err => {
-                    // eslint-disable-next-line no-console
-                    console.log(err);
-                },
+                // onInit: function (data, actions) {
+                //     actions.disable(); // Allow for validation in onClick()
+                //     paypalActions = actions; // Save for later enable()/disable() calls
+                // },
+                // onClick: function () {
+                //
+                //     if (!that.isInvalid) {
+                //         paypalActions.enable();
+                //     } else {
+                //         paypalActions.disable();
+                //     }
+                // }
             }).render('.paypal-buttons')
         },
         //TODO Доделать отключение кнопки при не прохождении валидации

@@ -32,7 +32,7 @@
                     </p>
                 </div>
                 <p class="item-description" v-html="items[id - 1].description"></p>
-                <img class="item-table" src="../../../public/item/table.svg">
+                <img class="item-table" :src='items[id - 1].sizeTable'>
                 <button class="cart-button" @click="addProductToCart(items[id - 1])">ADD TO CART</button>
             </div>
         </section>
@@ -93,7 +93,7 @@
     .carousel-section {
         width: 50%;
         display: flex;
-        background: white;
+        background: #EEEDED;
     }
 
     .main-section {
