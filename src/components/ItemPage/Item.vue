@@ -9,7 +9,7 @@
                 <div class="first-block">
                     <p class="item-text">{{items[id - 1].name}}</p>
                     <hr>
-                    <p class="item-text">${{items[id - 1].price}}</p>
+                    <p class="item-text">{{items[id - 1].price}}₽</p>
                     <hr>
                     <p class="item-text" v-if="items[id - 1].oneSize === true"><span
                             style="vertical-align: top">size</span>
@@ -122,7 +122,7 @@
     }
 
     .item-text {
-        font-size: 2vw;
+        font-size: 1.9vw;
         text-align: left;
         margin: 0;
     }
@@ -165,7 +165,7 @@
 
     .logo__gog {
         position: absolute;
-        bottom: 60px;
+        bottom: 30px;
         right: 7%;
         width: 40%;
         max-width: 300px;

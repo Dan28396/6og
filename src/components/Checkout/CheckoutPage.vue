@@ -53,7 +53,7 @@
                 <h2 class="section-title">Shipping</h2>
                 <div class="checkout__bordered-section" style="margin-bottom: 30px">
                     <p class="checkout__delivery">Russia: FREE</p>
-                    <p class="checkout__delivery">WorldWide: DHL $15</p>
+                    <p class="checkout__delivery">WorldWide: DHL $15/1.000₽</p>
                 </div>
                 <div class="checkout__section">
                     <div class="checkout__pay-section">
@@ -72,7 +72,7 @@
                             <div class="cart-item__params">
                                 <p class="cart-item__size" :class="{item__size: item.selectedSize.length > 3}">
                                     {{item.selectedSize}}</p>
-                                <p class="cart-item__price">${{item.price}}*{{item.quantity}}</p>
+                                <p class="cart-item__price">{{item.price}}₽*{{item.quantity}}</p>
                             </div>
                         </div>
                     </div>
@@ -80,16 +80,16 @@
                 <div class="cart-item__subtotal">
                     <div class="subtotal-row">
                         <p>subtotal</p>
-                        <p>${{total}}</p>
+                        <p>{{total}}₽</p>
                     </div>
                     <div class="subtotal-row">
                         <p>shipping</p>
-                        <p>${{shipCost}}</p>
+                        <p>{{shipCost}}₽</p>
                     </div>
                 </div>
                 <div class="total-row">
                     <p>TOTAL</p>
-                    <p>${{total+shipCost}}</p>
+                    <p>{{total+shipCost}}₽</p>
                 </div>
             </div>
             <img class="logo__gog" src="../../../public/mainpage/6og_white.svg">

@@ -15,7 +15,7 @@
                             <div>
                                 <p class="cart-item__name">{{item.name}}</p>
                                 <p class="cart-item__size">{{item.selectedSize}}</p>
-                                <p class="cart-item__price">${{item.price}}</p>
+                                <p class="cart-item__price">{{item.price}}₽</p>
                             </div>
                             <div class="cart-item__actions">
                                 <div class="cart-item__quantity-selector">
@@ -33,7 +33,7 @@
                 <footer class="cart-wrapper__footer">
                     <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
                     <router-link to="/checkout">
-                        <button class="cart-footer__button" @click="finalizeCart">Checkout ${{total}}</button>
+                        <button class="cart-footer__button" @click="finalizeCart">Checkout {{total}}₽</button>
                     </router-link>
                 </footer>
             </aside>

@@ -121,15 +121,15 @@
                         purchase_units: [
                             {
                                 amount: {
-                                    currency_code: 'USD',
+                                    currency_code: 'RUB',
                                     value: finalCost,
                                     breakdown: {
                                         item_total: {
-                                            currency_code: 'USD',
+                                            currency_code: 'RUB',
                                             value: total
                                         },
                                         shipping: {
-                                            currency_code: 'USD',
+                                            currency_code: 'RUB',
                                             value: shipCost
                                         }
                                     }
