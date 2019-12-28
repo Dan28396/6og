@@ -94,6 +94,7 @@
             </div>
             <img class="logo__gog" src="../../../public/mainpage/6og_white.svg">
         </section>
+        <SuccessModal/>
     </main>
 </template>
 
@@ -102,10 +103,11 @@
     import {mapGetters, mapState} from 'vuex'
     import PayPalButton from "@/components/Checkout/PayPalButton";
     import {required, email} from 'vuelidate/lib/validators'
+    import SuccessModal from "@/components/Checkout/SuccessModal";
 
     export default {
         name: "CheckoutPage",
-        components: {PayPalButton},
+        components: {SuccessModal, PayPalButton},
         validations: {
             email: {
                 required,

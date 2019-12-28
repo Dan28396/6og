@@ -109,7 +109,7 @@
 
 
     .item-info {
-        width: 70%;
+        width: 75%;
         height: auto;
         display: flex;
         flex-direction: column;

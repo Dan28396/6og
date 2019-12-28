@@ -60,6 +60,7 @@
 
 <style scoped>
     main {
+        position: relative;
         width: 100%;
         height: 100%;
         min-height: 100vh;
@@ -67,8 +68,6 @@
         display: flex;
         background: #EEEDED url("../../../public/mainpage/Resurs_1.svg") no-repeat center center;
         background-size: cover;
-        justify-content: center;
-        align-content: center;
         flex-direction: column;
         padding: 160px 0;
     }
