@@ -2,12 +2,12 @@
     <transition name="fade">
         <div class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container" v-click-outside="toggleSuccessModal">
+                <div class="modal-container" v-click-outside="toggleFailModal">
                     <div class="success__wrap">
                         <img class="galochka" src="../../../public/mainpage/6og.svg">
-                        <p class="success">Order completed successfully. Check your email for track-number.</p>
+                        <p class="success">Oops... something went wrong. Check all the fields and try again.</p>
                     </div>
-                    <button type="button" class="close" @click="toggleSuccessModal">
+                    <button type="button" class="close" @click="toggleFailModal">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -18,10 +18,10 @@
 
 <script>
     export default {
-        name: "SuccessModal",
+        name: "FailModal",
         methods: {
-            toggleSuccessModal() {
-                this.$store.commit("Checkout/toggleSuccessModal");
+            toggleFailModal() {
+                this.$store.commit("Checkout/toggleFailModal");
             },
         }
     }

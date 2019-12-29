@@ -66,7 +66,7 @@
         min-height: 100vh;
         margin: auto;
         display: flex;
-        background: #EEEDED url("../../../public/mainpage/Resurs_1.svg") no-repeat center center;
+        background: #EEEDED url("../../../public/mainpage/Resurs_1.svg") no-repeat fixed center center;
         background-size: cover;
         flex-direction: column;
         padding: 160px 0;

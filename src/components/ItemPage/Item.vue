@@ -165,7 +165,7 @@
 
     .logo__gog {
         position: absolute;
-        bottom: 30px;
+        bottom: 35px;
         right: 7%;
         width: 40%;
         max-width: 300px;

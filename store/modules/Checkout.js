@@ -8,6 +8,8 @@ const state = {
     region: null,
     postalCode: null,
     isValidated: null,
+    successModal: false,
+    failModal: false,
     countries: [
         {Code: "AF", Name: "Afghanistan"}, {Code: "AX", Name: "\u00c5land Islands"}, {
             Code: "AL",
@@ -297,6 +299,12 @@ const actions = {}
 
 
 const mutations = {
+    toggleSuccessModal(state) {
+        state.successModal = !state.successModal
+    },
+    toggleFailModal(state) {
+        state.failModal = !state.failModal
+    },
     setShipCost(state, cost) {
         state.shipCost = cost
     },

@@ -94,7 +94,8 @@
             </div>
             <img class="logo__gog" src="../../../public/mainpage/6og_white.svg">
         </section>
-        <SuccessModal/>
+        <SuccessModal v-if="successModal"/>
+        <FailModal v-if="failModal"/>
     </main>
 </template>
 
@@ -104,10 +105,11 @@
     import PayPalButton from "@/components/Checkout/PayPalButton";
     import {required, email} from 'vuelidate/lib/validators'
     import SuccessModal from "@/components/Checkout/SuccessModal";
+    import FailModal from "@/components/Checkout/FailModal";
 
     export default {
         name: "CheckoutPage",
-        components: {SuccessModal, PayPalButton},
+        components: {FailModal, SuccessModal, PayPalButton},
         validations: {
             email: {
                 required,
@@ -143,6 +145,8 @@
             }),
             ...mapState({
                 items: state => state.Cart.items,
+                successModal: state => state.Checkout.successModal,
+                failModal: state => state.Checkout.failModal
             }),
             email: {
                 get() {
@@ -213,7 +217,8 @@
             if (window.body.classList.contains('modal__active')) {
                 window.body.classList.remove('modal__active')
             }
-        }
+        },
+
     }
 </script>
 

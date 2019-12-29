@@ -148,6 +148,12 @@
                         ],
                     });
                 },
+                onApprove () {
+                    that.$store.commit("Checkout/toggleSuccessModal");
+                },
+                onError () {
+                    that.$store.commit("Checkout/toggleFailModal");
+                },
                 // onInit: function (data, actions) {
                 //     actions.disable(); // Allow for validation in onClick()
                 //     paypalActions = actions; // Save for later enable()/disable() calls
@@ -163,7 +169,6 @@
             }).render('.paypal-buttons')
         },
         //TODO Доделать отключение кнопки при не прохождении валидации
-        methods: {}
     }
 
 </script>
