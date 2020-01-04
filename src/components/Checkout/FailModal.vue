@@ -4,8 +4,8 @@
             <div class="modal-wrapper">
                 <div class="modal-container" v-click-outside="toggleFailModal">
                     <div class="success__wrap">
-                        <img class="galochka" src="../../../public/mainpage/6og.svg">
-                        <p class="success">Oops... something went wrong. Check all the fields and try again.</p>
+                        <img class="galochka" src="../../../public/checkout/krestik.svg">
+                        <p class="success"><span class="fail-border">Oops... something went wrong.</span> Check all the fields and try again.</p>
                     </div>
                     <button type="button" class="close" @click="toggleFailModal">
                         <span aria-hidden="true">×</span>
@@ -73,7 +73,7 @@
         transition: all .3s ease;
         font-family: Roboto;
         position: relative;
-        height: 30vw;
+        height: 28vw;
         display: flex;
         justify-content: center;
         align-content: center;
@@ -85,20 +85,24 @@
     }
 
     .galochka {
-        width: 70%;
+        width: 60%;
         padding-left: 30px;
-        margin-bottom: 30px;
-        max-width: 300px;
+        max-width: 250px;
     }
 
     .success {
         font-family: GT-America;
         font-size: 2vw;
+        margin: 0;
     }
 
     .close {
         position: absolute;
         top: 5px;
         right: 10px;
+    }
+    .fail-border {
+        font-weight: bold;
+        display: block;
     }
 </style>
