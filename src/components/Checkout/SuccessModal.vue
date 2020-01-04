@@ -79,7 +79,8 @@
         display: flex;
         justify-content: center;
         align-content: center;
-
+        min-height: 250px;
+        min-width: 300px;
     }
 
     .success__wrap {
@@ -107,5 +108,11 @@
     .success-border {
         font-weight: bold;
         display: block;
+    }
+
+    @media all and (max-width: 640px) {
+        .success {
+            font-size: 14px;
+        }
     }
 </style>
