@@ -145,7 +145,7 @@ const state = {
             Name: "Luxembourg"
         }, {Code: "MO", Name: "Macao"}, {
             Code: "MK",
-            Name: "Macedonia, the Former Yugoslav Republic of"
+            Name: "Macedonia"
         }, {Code: "MG", Name: "Madagascar"}, {Code: "MW", Name: "Malawi"}, {
             Code: "MY",
             Name: "Malaysia"
@@ -197,10 +197,10 @@ const state = {
         }, {Code: "QA", Name: "Qatar"}, {Code: "RE", Name: "R\u00e9union"}, {
             Code: "RO",
             Name: "Romania"
-        }, {Code: "RU", Name: "Russian Federation"}, {Code: "RU", Name: "Russia"}, {Code: "RW", Name: "Rwanda"}, {
+        }, {Code: "RU", Name: "Russian Federation"}, {Code: "RW", Name: "Rwanda"}, {
             Code: "BL",
             Name: "Saint Barth\u00e9lemy"
-        }, {Code: "SH", Name: "Saint Helena, Ascension and Tristan da Cunha"}, {
+        }, {
             Code: "KN",
             Name: "Saint Kitts and Nevis"
         }, {Code: "LC", Name: "Saint Lucia"}, {Code: "MF", Name: "Saint Martin (French part)"}, {
@@ -215,16 +215,13 @@ const state = {
         }, {Code: "RS", Name: "Serbia"}, {Code: "SC", Name: "Seychelles"}, {
             Code: "SL",
             Name: "Sierra Leone"
-        }, {Code: "SG", Name: "Singapore"}, {Code: "SX", Name: "Sint Maarten (Dutch part)"}, {
+        }, {Code: "SG", Name: "Singapore"}, {
             Code: "SK",
             Name: "Slovakia"
         }, {Code: "SI", Name: "Slovenia"}, {Code: "SB", Name: "Solomon Islands"}, {
             Code: "SO",
             Name: "Somalia"
-        }, {Code: "ZA", Name: "South Africa"}, {
-            Code: "GS",
-            Name: "South Georgia and the South Sandwich Islands"
-        }, {Code: "SS", Name: "South Sudan"}, {Code: "ES", Name: "Spain"}, {
+        }, {Code: "ZA", Name: "South Africa"}, {Code: "SS", Name: "South Sudan"}, {Code: "ES", Name: "Spain"}, {
             Code: "LK",
             Name: "Sri Lanka"
         }, {Code: "SD", Name: "Sudan"}, {Code: "SR", Name: "Suriname"}, {
@@ -254,7 +251,7 @@ const state = {
         }, {Code: "AE", Name: "United Arab Emirates"}, {Code: "GB", Name: "United Kingdom"}, {
             Code: "US",
             Name: "United States"
-        }, {Code: "UM", Name: "United States Minor Outlying Islands"}, {Code: "UY", Name: "Uruguay"}, {
+        }, {Code: "UY", Name: "Uruguay"}, {
             Code: "UZ",
             Name: "Uzbekistan"
         }, {Code: "VU", Name: "Vanuatu"}, {Code: "VE", Name: "Venezuela, Bolivarian Republic of"}, {
@@ -267,8 +264,6 @@ const state = {
             Code: "ZM",
             Name: "Zambia"
         }, {Code: "ZW", Name: "Zimbabwe"},
-        {Code: "RU", Name: "Россия"},
-        {Code: "RU", Name: "Российская Федерация"}
     ],
 }
 

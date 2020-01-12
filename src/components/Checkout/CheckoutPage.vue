@@ -35,8 +35,9 @@
 
                     <div class="section__address">
                         <div>
-                            <input class="input-wrap__input" placeholder="Country"
-                                   v-model="$v.country.$model">
+                            <select class="input-wrap__input" placeholder="Country" v-model="$v.country.$model">
+                                <option v-for="country in countries" v-bind:key="country.Code">{{country.Name}}</option>
+                            </select>
                             <p class="error" v-if="(!$v.country.required) && ($v.country.$dirty)">Field is required.</p>
                         </div>
                         <div>
@@ -146,7 +147,8 @@
             ...mapState({
                 items: state => state.Cart.items,
                 successModal: state => state.Checkout.successModal,
-                failModal: state => state.Checkout.failModal
+                failModal: state => state.Checkout.failModal,
+                countries: state => state.Checkout.countries
             }),
             email: {
                 get() {
@@ -340,6 +342,7 @@
         transition: all 0.2s ease-out;
         outline: none;
         margin-bottom: 15px;
+        background: white;
     }
 
     .input__error {
@@ -455,6 +458,7 @@
     .item__size {
         font-size: 36px;
     }
+
 
     #style-1::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
