@@ -4,8 +4,10 @@
             <div class="modal-wrapper">
                 <div class="modal-container" v-click-outside="toggleSuccessModal">
                     <div class="success__wrap">
-                        <img class="galochka" src="../../../public/mainpage/6og.svg">
-                        <p class="success">Order completed successfully. Check your email for track-number.</p>
+                        <img class="galochka" src="../../../public/checkout/galochka.svg">
+                        <p class="success"><span class="success-border">Your order is confirmed.</span>
+                            We’ve accepted your order, and we’re getting it ready.
+                            Order confirmation will be emailed to you shortly.</p>
                     </div>
                     <button type="button" class="close" @click="toggleSuccessModal">
                         <span aria-hidden="true">×</span>
@@ -77,7 +79,8 @@
         display: flex;
         justify-content: center;
         align-content: center;
-
+        min-height: 250px;
+        min-width: 300px;
     }
 
     .success__wrap {
@@ -85,20 +88,31 @@
     }
 
     .galochka {
-        width: 70%;
+        width: 60%;
         padding-left: 30px;
-        margin-bottom: 30px;
-        max-width: 300px;
+        max-width: 250px;
     }
 
     .success {
         font-family: GT-America;
-        font-size: 2vw;
+        font-size: 1.8vw;
+        margin: 0;
     }
 
     .close {
         position: absolute;
         top: 5px;
         right: 10px;
+    }
+
+    .success-border {
+        font-weight: bold;
+        display: block;
+    }
+
+    @media all and (max-width: 640px) {
+        .success {
+            font-size: 14px;
+        }
     }
 </style>
