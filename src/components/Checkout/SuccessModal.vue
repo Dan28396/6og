@@ -75,7 +75,6 @@
         transition: all .3s ease;
         font-family: Roboto;
         position: relative;
-        height: 30vw;
         display: flex;
         justify-content: center;
         align-content: center;

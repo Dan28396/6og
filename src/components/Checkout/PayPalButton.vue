@@ -148,10 +148,11 @@
                         ],
                     });
                 },
-                onApprove () {
-                    that.$store.commit("Checkout/toggleSuccessModal");
+                onApprove: function (data, actions) {
+                    // This function captures the funds from the transaction.
+                    return actions.order.capture().then(that.$store.commit("Checkout/toggleSuccessModal"));
                 },
-                onError () {
+                onCancel() {
                     that.$store.commit("Checkout/toggleFailModal");
                 },
             }).render('.paypal-buttons')
