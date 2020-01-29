@@ -1,10 +1,14 @@
+import {uuid} from "uuidv4";
+
+const axios = require('axios').default;
+
 const state = {
     email: null,
     firstName: null,
     lastName: null,
     address: null,
     city: null,
-    country: null,
+    country: "",
     region: null,
     postalCode: null,
     isValidated: null,
@@ -290,7 +294,46 @@ const getters = {
 }
 
 
-const actions = {}
+const actions = {
+    postOrder: () => {
+        let id = "669568";
+        let api_key = "test_ysv-upMrKYSZiegV2lg05djdMn5BuCo8w09M9akcuEs";
+        let session_url = 'https://payment.yandex.net/api/v3/payments';
+        let idem_key = uuid();
+
+        return new Promise(() => {
+            axios({
+                method: 'post',
+                url: session_url,
+                headers: {'Content-Type': 'application/json', 'Idempotence-Key': idem_key,},
+                auth: {
+                    username: id,
+                    password: api_key
+                },
+                data: {
+                    "amount": {
+                        "value": "10.00",
+                        "currency": "RUB"
+                    },
+                    "payment_method_data": {
+                        "type": "bank_card"
+                    },
+                    "confirmation": {
+                        "type": "redirect",
+                        "return_url": "https://url.test"
+                    }
+                }
+            })
+                .then(resolve => {
+                    alert(resolve)
+
+                })
+                .catch(err => {
+                    alert(err)
+                })
+        })
+    },
+}
 
 
 const mutations = {

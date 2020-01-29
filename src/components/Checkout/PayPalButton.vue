@@ -152,7 +152,7 @@
                     // This function captures the funds from the transaction.
                     return actions.order.capture().then(that.$store.commit("Checkout/toggleSuccessModal"));
                 },
-                onCancel() {
+                onError() {
                     that.$store.commit("Checkout/toggleFailModal");
                 },
             }).render('.paypal-buttons')

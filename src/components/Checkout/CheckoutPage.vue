@@ -35,7 +35,8 @@
 
                     <div class="section__address">
                         <div>
-                            <select class="input-wrap__input" placeholder="Country" v-model="$v.country.$model">
+                            <select class="input-wrap__input" required v-model="$v.country.$model">
+                                <option value="" hidden>Country</option>
                                 <option v-for="country in countries" v-bind:key="country.Code">{{country.Name}}</option>
                             </select>
                             <p class="error" v-if="(!$v.country.required) && ($v.country.$dirty)">Field is required.</p>
@@ -45,7 +46,7 @@
                             <p class="error" v-if="(!$v.region.required) && ($v.region.$dirty)">Field is required.</p>
                         </div>
                         <div>
-                            <input class="input-wrap__input" placeholder="Postal code" v-model="$v.postalCode.$model">
+                            <input class="input-wrap__input" placeholder="Zip code" v-model="$v.postalCode.$model">
                             <p class="error" v-if="(!$v.postalCode.required) && ($v.postalCode.$dirty)">Field is
                                 required.</p>
                         </div>
@@ -58,6 +59,7 @@
                 </div>
                 <div class="checkout__section">
                     <div class="checkout__pay-section">
+                        <YandexKassa :isInvalid="this.$v.$invalid"/>
                         <PayPalButton :isInvalid="this.$v.$invalid"/>
                     </div>
                 </div>
@@ -107,10 +109,11 @@
     import {required, email} from 'vuelidate/lib/validators'
     import SuccessModal from "@/components/Checkout/SuccessModal";
     import FailModal from "@/components/Checkout/FailModal";
+    import YandexKassa from "@/components/Checkout/YandexKassa";
 
     export default {
         name: "CheckoutPage",
-        components: {FailModal, SuccessModal, PayPalButton},
+        components: {YandexKassa, FailModal, SuccessModal, PayPalButton},
         validations: {
             email: {
                 required,
@@ -129,6 +132,7 @@
                 required
             },
             country: {
+
                 required
             },
             region: {
@@ -337,12 +341,16 @@
         padding: 0.92857em 0.78571em;
         word-break: normal;
         line-height: inherit;
-        max-height: 45px;
+        height: 45px;
         font-size: 12px;
         transition: all 0.2s ease-out;
         outline: none;
         margin-bottom: 15px;
         background: white;
+    }
+
+    select:not(:focus):invalid {
+        color: #7a7a7a;
     }
 
     .input__error {
@@ -547,6 +555,17 @@
 
         .cart-item__price {
             font-size: 5vw;
+        }
+    }
+
+    @media all and (max-width: 1300px) {
+        .checkout__pay-section {
+            width: 60%;
+        }
+    }
+    @media all and (max-width: 548px) {
+        .checkout__pay-section {
+            width: 80%;
         }
     }
 
