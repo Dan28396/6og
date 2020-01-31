@@ -59,7 +59,7 @@
                 </div>
                 <div class="checkout__section">
                     <div class="checkout__pay-section">
-                        <YandexKassa :isInvalid="this.$v.$invalid"/>
+                        <YandexKassa :validate="this.$v" :isInvalid="this.$v.$invalid"/>
                         <PayPalButton :isInvalid="this.$v.$invalid"/>
                     </div>
                 </div>

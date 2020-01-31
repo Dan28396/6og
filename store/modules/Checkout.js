@@ -295,37 +295,35 @@ const getters = {
 
 
 const actions = {
-    postOrder: () => {
+    postOrder: ({state}) => {
         let id = "669568";
         let api_key = "test_ysv-upMrKYSZiegV2lg05djdMn5BuCo8w09M9akcuEs";
-        let session_url = 'https://payment.yandex.net/api/v3/payments';
+        let session_url = 'https://cors-anywhere.herokuapp.com/https://payment.yandex.net/api/v3/payments';
         let idem_key = uuid();
-
         return new Promise(() => {
             axios({
                 method: 'post',
                 url: session_url,
-                headers: {'Content-Type': 'application/json', 'Idempotence-Key': idem_key,},
+                headers: {'Content-Type': 'application/json', 'Idempotence-Key': idem_key},
                 auth: {
                     username: id,
                     password: api_key
                 },
+
                 data: {
-                    "amount": {
-                        "value": "10.00",
-                        "currency": "RUB"
+                    amount: {
+                        value: "10.00",
+                        currency: "RUB"
                     },
-                    "payment_method_data": {
-                        "type": "bank_card"
-                    },
-                    "confirmation": {
-                        "type": "redirect",
-                        "return_url": "https://url.test"
+                    description: "" + state.email + ", " + state.firstName + ", " + state.lastName + ", " + state.country + ", " + state.region + ", " + state.city + ", " + state.address + ", " + state.postalCode,
+                    confirmation: {
+                        type: "redirect",
+                        return_url: "http://localhost:8080/"
                     }
                 }
             })
-                .then(resolve => {
-                    alert(resolve)
+                .then(res => {
+                    window.location.href = res.data.confirmation.confirmation_url
 
                 })
                 .catch(err => {

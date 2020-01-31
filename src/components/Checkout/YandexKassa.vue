@@ -1,5 +1,6 @@
 <template>
-    <button class="yandex-button" @click="postOrder()"><img class="yandex-button__img" src="../../../public/checkout/yandexcheckout.png">
+    <button class="yandex-button" @click="postOrder(isInvalid, validate)"><img class="yandex-button__img"
+                                                                     src="../../../public/checkout/yandexcheckout.png">
     </button>
 </template>
 
@@ -7,9 +8,14 @@
 
     export default {
         name: "YandexKassa",
+        props: ['isInvalid', 'validate'],
         methods: {
-            postOrder: function () {
-                this.$store.dispatch("Checkout/postOrder");
+            postOrder: function (isInvalid, validate) {
+                if (isInvalid) {
+                    validate.$touch()
+                } else {
+                    this.$store.dispatch("Checkout/postOrder");
+                }
             },
         }
     }
