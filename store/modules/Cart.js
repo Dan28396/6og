@@ -100,6 +100,10 @@ const mutations = {
         state.items.splice(index, 1);
     },
 
+    clearCart(state) {
+        state.items = [];
+        state.finalCart = []
+    },
 
     toggleCartModal: (state) => {
         state.showCartModal = !state.showCartModal

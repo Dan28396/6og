@@ -7,7 +7,7 @@
 
     export default {
         name: "PayPalButton",
-        props: ['isInvalid'],
+        props: ['isInvalid', 'validate'],
         computed: {
             ...mapState({
                 checkoutStatus: state => state.Cart.checkoutStatus,
@@ -149,11 +149,16 @@
                     });
                 },
                 onApprove: function (data, actions) {
-                    // This function captures the funds from the transaction.
-                    return actions.order.capture().then(that.$store.commit("Checkout/toggleSuccessModal"));
+
+                    return actions.order.capture().then(
+                        function() {
+                            that.$store.commit("Cart/clearCart")
+                            that.$store.commit("Checkout/toggleSuccessModal")
+                        }
+                    );
                 },
                 onError() {
-                    that.$store.commit("Checkout/toggleFailModal");
+                    that.validate.$touch()
                 },
             }).render('.paypal-buttons')
         },

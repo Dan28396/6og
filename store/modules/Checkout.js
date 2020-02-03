@@ -295,7 +295,7 @@ const getters = {
 
 
 const actions = {
-    postOrder: ({state}) => {
+    postOrder: ({state, getters, commit}) => {
         let id = "669568";
         let api_key = "test_ysv-upMrKYSZiegV2lg05djdMn5BuCo8w09M9akcuEs";
         let session_url = 'https://cors-anywhere.herokuapp.com/https://payment.yandex.net/api/v3/payments';
@@ -315,11 +315,11 @@ const actions = {
                         value: "10.00",
                         currency: "RUB"
                     },
-                    description: "" + state.email + ", " + state.firstName + ", " + state.lastName + ", " + state.country + ", " + state.region + ", " + state.city + ", " + state.address + ", " + state.postalCode,
+                    description: state.email + "," + state.firstName + "," + state.lastName + "," + getters.countryCode + "," + state.city + "," + state.address + "," + state.postalCode,
                     confirmation: {
                         type: "redirect",
-                        return_url: "http://localhost:8080/"
-                    }
+                        return_url: "https://6og.ooo/checkout"
+                    },
                 }
             })
                 .then(res => {
@@ -327,7 +327,7 @@ const actions = {
 
                 })
                 .catch(err => {
-                    alert(err)
+                    commit("toggleFailModal", err);
                 })
         })
     },
