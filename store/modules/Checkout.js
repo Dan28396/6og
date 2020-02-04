@@ -312,7 +312,7 @@ const actions = {
 
                 data: {
                     amount: {
-                        value: "10.00",
+                        value: "" + getters.Cart.cartTotalPrice,
                         currency: "RUB"
                     },
                     description: state.email + "," + state.firstName + "," + state.lastName + "," + getters.countryCode + "," + state.city + "," + state.address + "," + state.postalCode,
