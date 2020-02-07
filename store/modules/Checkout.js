@@ -312,10 +312,13 @@ const actions = {
 
                 data: {
                     amount: {
-                        value: "" + getters.Cart.cartTotalPrice,
+                        value: "10",
                         currency: "RUB"
                     },
                     description: state.email + "," + state.firstName + "," + state.lastName + "," + getters.countryCode + "," + state.city + "," + state.address + "," + state.postalCode,
+                    metadata: {
+                        order: '6og T-shirt, S, 2'
+                    },
                     confirmation: {
                         type: "redirect",
                         return_url: "https://6og.ooo/checkout"
