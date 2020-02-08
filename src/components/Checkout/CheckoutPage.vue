@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main @load="toggleSuccessModal()">
         <section class="checkout" id="style-2">
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
@@ -223,9 +223,15 @@
             if (window.body.classList.contains('modal__active')) {
                 window.body.classList.remove('modal__active')
             }
-            // eslint-disable-next-line no-console
-            console.log(document.referrer)
         },
+        methods: {
+            toggleSuccessModal: function () {
+                if (document.referrer.includes("https://money.yandex.ru/payments/external/")) {
+                    this.$store.commit("Cart/clearCart");
+                    this.$store.commit("Checkout/toggleSuccessModal")
+                }
+            }
+        }
     }
 </script>
 
