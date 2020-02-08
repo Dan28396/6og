@@ -3,7 +3,7 @@
         <section class="checkout" id="style-2">
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
-                    <a @click="$router.go(-1)" class="checkout__return">
+                    <a @click="$router.back()" class="checkout__return">
                         <img class="checkout__arrow-img" src="../../../public/checkout/next.svg">
                         Return to item
                     </a>
@@ -223,8 +223,9 @@
             if (window.body.classList.contains('modal__active')) {
                 window.body.classList.remove('modal__active')
             }
+            // eslint-disable-next-line no-console
+            console.log(window.referrer)
         },
-
     }
 </script>
 
@@ -563,6 +564,7 @@
             width: 60%;
         }
     }
+
     @media all and (max-width: 548px) {
         .checkout__pay-section {
             width: 80%;

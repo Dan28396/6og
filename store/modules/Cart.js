@@ -12,6 +12,15 @@ const getters = {
             return total + product.price * product.quantity
         }, 0)
     },
+    stringifyCart: (state) => {
+        let rdyForStringifyCart = [];
+        state.items.forEach(item => (rdyForStringifyCart.push({
+            name: item.name,
+            quantity: item.quantity + '',
+            size: '' + item.selectedSize.toUpperCase()
+        })))
+        return JSON.stringify(rdyForStringifyCart)
+    }
 }
 
 
@@ -61,7 +70,6 @@ const mutations = {
             selectedSize: product.selectedSize,
             oneSize: product.oneSize,
             quantity: 1,
-
         })
     },
 

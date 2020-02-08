@@ -295,11 +295,12 @@ const getters = {
 
 
 const actions = {
-    postOrder: ({state, getters, commit}) => {
+    postOrder: ({state, getters, rootGetters, commit}) => {
         let id = "669568";
         let api_key = "test_ysv-upMrKYSZiegV2lg05djdMn5BuCo8w09M9akcuEs";
         let session_url = 'https://cors-anywhere.herokuapp.com/https://payment.yandex.net/api/v3/payments';
         let idem_key = uuid();
+        let finalPrice = rootGetters['Cart/cartTotalPrice'] + getters.shipCost;
         return new Promise(() => {
             axios({
                 method: 'post',
@@ -309,16 +310,22 @@ const actions = {
                     username: id,
                     password: api_key
                 },
-
                 data: {
                     amount: {
-                        value: "10",
+                        value: "" + finalPrice,
                         currency: "RUB"
                     },
-                    description: state.email + "," + state.firstName + "," + state.lastName + "," + getters.countryCode + "," + state.city + "," + state.address + "," + state.postalCode,
+                    description: "Заказ номер: " + idem_key,
                     metadata: {
-                        order: '6og T-shirt, S, 2'
+                        email: state.email,
+                        name: state.firstName + ' ' + state.lastName,
+                        country: state.country,
+                        city: state.city,
+                        address: state.address,
+                        postalCode: state.postalCode,
+                        order: rootGetters['Cart/stringifyCart']
                     },
+                    capture: false,
                     confirmation: {
                         type: "redirect",
                         return_url: "https://6og.ooo/checkout"
@@ -326,8 +333,7 @@ const actions = {
                 }
             })
                 .then(res => {
-                    window.location.href = res.data.confirmation.confirmation_url
-
+                    window.location.href= res.data.confirmation.confirmation_url;
                 })
                 .catch(err => {
                     commit("toggleFailModal", err);
