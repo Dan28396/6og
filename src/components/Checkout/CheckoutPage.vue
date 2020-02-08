@@ -227,7 +227,7 @@
         methods: {
             toggleSuccessModal: function () {
                 if (document.referrer.includes("https://money.yandex.ru/payments/external/")) {
-                    this.$router.push('/');
+                    location.href= "https://6og.ooo/checkout";
                     this.$store.commit("Cart/clearCart");
                     this.$store.commit("Checkout/toggleSuccessModal")
                 }
