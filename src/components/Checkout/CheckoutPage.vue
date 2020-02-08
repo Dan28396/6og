@@ -1,5 +1,5 @@
 <template>
-    <main @load="toggleSuccessModal()">
+    <main>
         <section class="checkout" id="style-2">
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
@@ -231,7 +231,10 @@
                     this.$store.commit("Checkout/toggleSuccessModal")
                 }
             }
-        }
+        },
+        beforeMount(){
+            this.toggleSuccessModal()
+        },
     }
 </script>
 
