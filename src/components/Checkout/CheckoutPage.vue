@@ -224,7 +224,7 @@
                 window.body.classList.remove('modal__active')
             }
             // eslint-disable-next-line no-console
-            console.log(window.referrer)
+            console.log(document.referrer)
         },
     }
 </script>
