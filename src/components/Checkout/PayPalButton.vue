@@ -93,7 +93,7 @@
         },
         methods: {
             postOrder: (order) => {
-                let session_url = 'https://6og.ooo/api/orders';
+                let session_url = 'https://6og.ooo/api/paypal';
                 return new Promise(() => {
                     axios({
                         method: 'post',
