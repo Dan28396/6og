@@ -5,6 +5,8 @@
 <script>
     import {mapState, mapGetters} from 'vuex'
 
+    const axios = require('axios').default;
+
     export default {
         name: "PayPalButton",
         props: ['isInvalid', 'validate'],
@@ -89,6 +91,32 @@
             },
 
         },
+        methods: {
+            postOrder: (order) => {
+                let session_url = 'https://6og.ooo/api/orders';
+                return new Promise(() => {
+                    axios({
+                        method: 'post',
+                        url: session_url,
+                        data: {
+                            order
+                        }
+                    })
+                        .then(res => {
+                            // eslint-disable-next-line no-console
+                            console.log(order)
+                            // eslint-disable-next-line no-console
+                            console.log(res)
+                        })
+                        .catch(err => {
+                            // eslint-disable-next-line no-console
+                            console.log(order)
+                            // eslint-disable-next-line no-console
+                            console.log(err)
+                        })
+                })
+            },
+        },
         mounted: function () {
             var that = this;
             // var paypalActions;
@@ -149,11 +177,14 @@
                     });
                 },
                 onApprove: function (data, actions) {
-
-                    return actions.order.capture().then(
-                        function() {
-                            that.$store.commit("Cart/clearCart")
-                            that.$store.commit("Checkout/toggleSuccessModal")
+                    return actions.order.get().then(function (orderDetails) {
+                            that.postOrder(orderDetails);
+                            return actions.order.capture().then(
+                                function () {
+                                    that.$store.commit("Cart/clearCart")
+                                    that.$store.commit("Checkout/toggleSuccessModal")
+                                }
+                            )
                         }
                     );
                 },
