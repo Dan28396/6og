@@ -6,6 +6,7 @@ import Item from "@/components/ItemPage/Item";
 import CheckoutPage from "@/components/Checkout/CheckoutPage";
 import OopsPage from "@/components/OopsPage";
 import AppPage from "@/components/MainPage/AppPage";
+import Orders from "../src/components/OrdersPage/Orders";
 
 Vue.use(Router)
 
@@ -35,11 +36,15 @@ const router = new Router({
             name: 'app',
             component: AppPage
         },
-
+        {
+            path: '/orders',
+            component: Orders
+        },
         {
             path: '*',
             component: OopsPage
         },
+
 
     ]
 });
