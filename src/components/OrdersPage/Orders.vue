@@ -5,7 +5,6 @@
             <hr>
         </div>
         <div class="main-section">
-
             <div class="order-wrap" v-for="order in orders" :key="order.id">
                 <button class="order-title" @click="toggleCollapse(order.id)">Order #{{order.id}}</button>
                 <transition name="fade">
@@ -84,6 +83,7 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        background: #eeeded;
     }
 
     .title {
@@ -119,6 +119,10 @@
         font-weight: bold;
         text-decoration: underline;
         margin-bottom: 10px;
+        background: black;
+        border: none;
+        color: white;
+        padding: 5px 10px;
     }
 
     .order-info {
@@ -148,5 +152,11 @@
     .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */
     {
         opacity: 0;
+    }
+
+    @media screen and (max-width: 400px) {
+        th {
+            font-size: 12px;
+        }
     }
 </style>
