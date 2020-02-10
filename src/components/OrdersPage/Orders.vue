@@ -7,7 +7,7 @@
         <div class="main-section">
 
             <div class="order-wrap" v-for="order in orders" :key="order.id">
-                <button class="order-title">Order #{{order.id}}</button>
+                <button class="order-title" @click="toggleCollapse(order.id)">Order #{{order.id}}</button>
                 <transition name="fade">
                     <div v-if="order.isVisible">
                         <div class="order-info">
@@ -51,7 +51,12 @@
                 orders: null
             }
         },
-        methods: {},
+        methods: {
+            toggleCollapse: function (id) {
+                const order = this.orders.find(order => order.id === id);
+                order.isVisible = !order.isVisible
+            }
+        },
         mounted: function () {
             let session_url = 'https://6og.ooo/api/orders';
             return new Promise(() => {
