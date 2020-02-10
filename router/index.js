@@ -45,6 +45,7 @@ const router = new Router({
             component: OopsPage
         },
 
+
     ]
 });
 
