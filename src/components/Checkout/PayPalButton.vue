@@ -148,6 +148,7 @@
                         },
                         purchase_units: [
                             {
+                                description: firstName + " " + lastName,
                                 amount: {
                                     currency_code: 'RUB',
                                     value: finalCost,
