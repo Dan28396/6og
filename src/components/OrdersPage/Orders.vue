@@ -60,7 +60,7 @@
                     url: session_url,
                 })
                     .then(res => {
-                        this.orders = res;
+                        this.orders = res.data;
                         //eslint-disable-next-line no-console
                         console.log(res)
                     })
