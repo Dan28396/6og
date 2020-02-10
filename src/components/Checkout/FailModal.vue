@@ -84,6 +84,7 @@
 
     .success__wrap {
         margin: auto;
+        padding: 10px;
     }
 
     .galochka {
