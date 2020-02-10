@@ -5,33 +5,35 @@
             <hr>
         </div>
         <div class="main-section">
-            <div class="order-wrap" v-for="order in orders" :key="order.id">
-                <button class="order-title">Order #{{order.id}}</button>
-                <div class="order-info">
-                    <p>Order Date: {{order.created_at}}</p>
-                    <p>Status: {{order.status}}</p>
-                    <p class="bold">Customer:</p>
-                    <p>Email: {{order.email}}</p>
-                    <p>Name: {{order.name}}</p>
-                    <p>Address: {{order.address}}</p>
-                    <p>City: {{order.city}}</p>
-                    <p>Country: {{order.country}}</p>
-                    <p>ZIP: {{order.postalCode}}</p>
-                    <p>Payment: {{order.source}}</p>
+            <transition name="fade">
+                <div class="order-wrap" v-for="order in orders" :key="order.id">
+                    <button class="order-title">Order #{{order.id}}</button>
+                    <div class="order-info">
+                        <p>Order Date: {{order.created_at}}</p>
+                        <p>Status: {{order.status}}</p>
+                        <p class="bold">Customer:</p>
+                        <p>Email: {{order.email}}</p>
+                        <p>Name: {{order.name}}</p>
+                        <p>Address: {{order.address}}</p>
+                        <p>City: {{order.city}}</p>
+                        <p>Country: {{order.country}}</p>
+                        <p>ZIP: {{order.postalCode}}</p>
+                        <p>Payment: {{order.source}}</p>
+                    </div>
+                    <table class="order-items">
+                        <tr>
+                            <th class="bold">Item</th>
+                            <th class="bold">Quantity</th>
+                            <th class="bold">Description</th>
+                        </tr>
+                        <tr v-for="(order, index) in order.order" :key="index">
+                            <td>{{order.name}}</td>
+                            <td>{{order.quantity}}</td>
+                            <td>{{order.description}}</td>
+                        </tr>
+                    </table>
                 </div>
-                <table class="order-items">
-                    <tr>
-                        <th class="bold">Item</th>
-                        <th class="bold">Quantity</th>
-                        <th class="bold">Description</th>
-                    </tr>
-                    <tr v-for="(order, index) in order.order" :key="index">
-                        <td>{{order.name}}</td>
-                        <td>{{order.quantity}}</td>
-                        <td>{{order.description}}</td>
-                    </tr>
-                </table>
-            </div>
+            </transition>
         </div>
     </main>
 </template>
@@ -134,5 +136,14 @@
         padding-right: 10px;
         text-align: left;
         width: auto;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */
+    {
+        opacity: 0;
     }
 </style>
