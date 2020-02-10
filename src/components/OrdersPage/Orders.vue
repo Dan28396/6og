@@ -8,7 +8,8 @@
 
             <div class="order-wrap" v-for="order in orders" :key="order.id">
                 <button class="order-title" @click="toggleCollapse(order.id)">Order #{{order.id}}</button>
-                    <div v-if="order.isVisible">
+                <transition name="fade">
+                    <div v-if="this.order.isVisible">
                         <div class="order-info">
                             <p>Order Date: {{order.created_at}}</p>
                             <p>Status: {{order.status}}</p>
@@ -34,6 +35,7 @@
                             </tr>
                         </table>
                     </div>
+                </transition>
             </div>
         </div>
     </main>
@@ -66,7 +68,7 @@
                         this.orders = res.data;
                         this.orders.forEach(obj => obj['isVisible'] = false)
                         //eslint-disable-next-line no-console
-                        console.log(res)
+                        console.log(this.orders)
                     })
                     .catch(err => {
                         //eslint-disable-next-line no-console
