@@ -5,35 +5,38 @@
             <hr>
         </div>
         <div class="main-section">
-            <transition name="fade">
-                <div class="order-wrap" v-for="order in orders" :key="order.id">
-                    <button class="order-title">Order #{{order.id}}</button>
-                    <div class="order-info">
-                        <p>Order Date: {{order.created_at}}</p>
-                        <p>Status: {{order.status}}</p>
-                        <p class="bold">Customer:</p>
-                        <p>Email: {{order.email}}</p>
-                        <p>Name: {{order.name}}</p>
-                        <p>Address: {{order.address}}</p>
-                        <p>City: {{order.city}}</p>
-                        <p>Country: {{order.country}}</p>
-                        <p>ZIP: {{order.postalCode}}</p>
-                        <p>Payment: {{order.source}}</p>
+
+            <div class="order-wrap" v-for="order in orders" :key="order.id">
+                <button class="order-title">Order #{{order.id}}</button>
+                <transition name="fade">
+                    <div v-if="order.isVisible">
+                        <div class="order-info">
+                            <p>Order Date: {{order.created_at}}</p>
+                            <p>Status: {{order.status}}</p>
+                            <p class="bold">Customer:</p>
+                            <p>Email: {{order.email}}</p>
+                            <p>Name: {{order.name}}</p>
+                            <p>Address: {{order.address}}</p>
+                            <p>City: {{order.city}}</p>
+                            <p>Country: {{order.country}}</p>
+                            <p>ZIP: {{order.postalCode}}</p>
+                            <p>Payment: {{order.source}}</p>
+                        </div>
+                        <table class="order-items">
+                            <tr>
+                                <th class="bold">Item</th>
+                                <th class="bold">Quantity</th>
+                                <th class="bold">Description</th>
+                            </tr>
+                            <tr v-for="(order, index) in order.order" :key="index">
+                                <td>{{order.name}}</td>
+                                <td>{{order.quantity}}</td>
+                                <td>{{order.description}}</td>
+                            </tr>
+                        </table>
                     </div>
-                    <table class="order-items">
-                        <tr>
-                            <th class="bold">Item</th>
-                            <th class="bold">Quantity</th>
-                            <th class="bold">Description</th>
-                        </tr>
-                        <tr v-for="(order, index) in order.order" :key="index">
-                            <td>{{order.name}}</td>
-                            <td>{{order.quantity}}</td>
-                            <td>{{order.description}}</td>
-                        </tr>
-                    </table>
-                </div>
-            </transition>
+                </transition>
+            </div>
         </div>
     </main>
 </template>
@@ -48,14 +51,9 @@
                 orders: null
             }
         },
-        methods: {
-            toggle(ident) {
-                var elem = document.getElementById("content-" + ident);
-                elem.classList.toggle('collapsed');
-            }
-        },
+        methods: {},
         mounted: function () {
-            let session_url = 'https://6og.ooo/api/orders'
+            let session_url = 'https://6og.ooo/api/orders';
             return new Promise(() => {
                 axios({
                     method: 'get',
@@ -63,6 +61,7 @@
                 })
                     .then(res => {
                         this.orders = res.data;
+                        this.orders.forEach(obj => obj['isVisible'] = false)
                         //eslint-disable-next-line no-console
                         console.log(res)
                     })
