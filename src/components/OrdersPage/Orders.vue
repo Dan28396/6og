@@ -5,7 +5,7 @@
             <hr>
         </div>
         <div class="main-section">
-            <div class="order-wrap" v-for="order in orders">
+            <div class="order-wrap" v-for="order in orders" :key="order.id">
                 <button class="order-title">Order #{{order.id}}</button>
                 <div class="order-info">
                     <p>Order Date: {{order.created_at}}</p>
@@ -25,7 +25,7 @@
                         <th class="bold">Quantity</th>
                         <th class="bold">Description</th>
                     </tr>
-                    <tr v-for="item in orders.items">
+                    <tr v-for="(item, index) in orders.items" :key="index">
                         <td>{{item.name}}</td>
                         <td>{{item.quantity}}</td>
                         <td>{{item.description}}</td>
