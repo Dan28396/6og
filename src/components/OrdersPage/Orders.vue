@@ -64,7 +64,7 @@
                     url: session_url,
                 })
                     .then(res => {
-                        this.orders = res.data;
+                        this.orders = res.data.reverse();
                         //eslint-disable-next-line no-console
                         console.log(this.orders)
                     })
