@@ -25,7 +25,7 @@
                         <th class="bold">Quantity</th>
                         <th class="bold">Description</th>
                     </tr>
-                    <tr v-for="(item, index) in orders.items" :key="index">
+                    <tr v-for="(item, index) in orders.order" :key="index">
                         <td>{{item.name}}</td>
                         <td>{{item.quantity}}</td>
                         <td>{{item.description}}</td>
