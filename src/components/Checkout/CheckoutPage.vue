@@ -226,7 +226,7 @@
         },
         methods: {
             toggleSuccessModal: function () {
-                if (document.referrer.includes("https://money.yandex.ru/payments/external/")) {
+                if (document.referrer.includes("https://money.yandex.ru/payments/checkout/success")) {
                     this.$store.commit("Cart/clearCart");
                     this.$store.commit("Checkout/toggleSuccessModal")
                 }

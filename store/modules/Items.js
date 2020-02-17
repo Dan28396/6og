@@ -119,7 +119,7 @@ const state = {
             preview_img: require("../../public/item/6OG DEPOT T BLACK/l_b.gif"),
             name: "6OG DEPOT T BLACK",
             sizeTable: require("../../public/item/t-shirt.svg"),
-            price: 6500,
+            price: 10,
             description: "sʜᴏʀᴛ sʟᴇᴇᴠᴇ ᴄᴏᴛᴛᴏɴ ᴏᴠᴇʀsɪᴢᴇᴅ ᴛ-sʜɪʀᴛ<br>“ᴅᴇᴘᴏᴛ” ɢʀᴀᴘʜɪᴄs ᴀɴᴅ ʟᴏɢᴏ ᴘʀɪɴᴛᴇᴅ ɪɴ ғʀᴏɴᴛ<br><br>NFC ᴄʜɪᴘ ᴀᴘᴘʟɪᴇᴅ ᴀᴛ ʙᴀᴄᴋ<br>AR ɪɴᴛᴇʀᴀᴄᴛᴇᴅ ᴘʀɪɴᴛ<br>100% ᴄᴏᴛᴛᴏɴ<br>ʙʟᴀᴄᴋ",
             selectedSize: "m",
             oneSize: false
@@ -136,7 +136,7 @@ const state = {
             preview_img: require('../../public/item/Bag/bag.png'),
             name: "6OG CHEST RIG 0001",
             sizeTable: require("../../public/item/t-shirt.svg"),
-            price: 2200,
+            price: 10,
             description: "COLOR: 013 BLACK<br>COUNTRY: RUSSIA<br>100% WATERPROOF",
             selectedSize: "ONESIZE",
             oneSize: true
