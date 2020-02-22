@@ -297,8 +297,8 @@ const getters = {
 
 const actions = {
     postOrder: ({state, getters, rootGetters, commit}) => {
-        let id = "667581";
-        let api_key = "live_cvfT4cq0P8y1m54MKKHlqKTWwGS7EV1guzOy-9Nl4Ko";
+        let id = "669568";
+        let api_key = "test_ysv-upMrKYSZiegV2lg05djdMn5BuCo8w09M9akcuEs";
         let session_url = 'https://cors-anywhere.herokuapp.com/https://payment.yandex.net/api/v3/payments';
         let idem_key = uuid();
         let finalPrice = rootGetters['Cart/cartTotalPrice'] + getters.shipCost;
