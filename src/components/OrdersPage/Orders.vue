@@ -14,6 +14,7 @@
                             <p>Status: {{order.status}}</p>
                             <p class="bold">Customer:</p>
                             <p>Email: {{order.email}}</p>
+                            <p>Phone: {{order.phone}}</p>
                             <p>Name: {{order.name}}</p>
                             <p>Address: {{order.address}}</p>
                             <p>City: {{order.city}}</p>
