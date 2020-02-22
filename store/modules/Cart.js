@@ -2,7 +2,8 @@ const state = {
     items: [],
     showCartModal: false,
     checkoutStatus: null,
-    finalCart: []
+    finalCart: [],
+    lastItem: null,
 }
 
 
@@ -54,6 +55,11 @@ const actions = {
     decrementItemQuantityAction({commit}, {id, selectedSize}) {
         commit('decrementItemQuantity', {id, selectedSize})
         commit('finalizeCart')
+    },
+
+    goToCheckout({commit}, path) {
+        commit('saveLastItem', path)
+        commit('finalizeCart')
     }
 
 }
@@ -85,6 +91,10 @@ const mutations = {
             quantity: item.quantity + '',
             description: 'Size: ' + item.selectedSize.toUpperCase()
         })))
+    },
+
+    saveLastItem(state, path) {
+        state.lastItem = path
     },
 
     incrementItemQuantity(state, {id, selectedSize}) {

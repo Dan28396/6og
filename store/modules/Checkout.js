@@ -4,6 +4,7 @@ const axios = require('axios').default;
 
 const state = {
     email: null,
+    phone: null,
     firstName: null,
     lastName: null,
     address: null,
@@ -318,6 +319,7 @@ const actions = {
                     description: "Заказ номер: " + idem_key,
                     metadata: {
                         email: state.email,
+                        phone: state.phone,
                         name: state.firstName + ' ' + state.lastName,
                         country: state.country,
                         city: state.city,
@@ -358,6 +360,9 @@ const mutations = {
     },
     updateEmail(state, email) {
         state.email = email
+    },
+    updatePhone(state, phone) {
+        state.phone = phone
     },
     updateFirstName(state, firstName) {
         state.firstName = firstName

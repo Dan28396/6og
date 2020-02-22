@@ -33,6 +33,14 @@
                     this.$store.commit('updateEmail', value)
                 }
             },
+            phone: {
+                get() {
+                    return this.$store.state.Checkout.phone
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updatePhone', value)
+                }
+            },
             firstName: {
                 get() {
                     return this.$store.state.Checkout.firstName
@@ -134,6 +142,7 @@
                     const finalCart = that.finalCart;
                     const shipCost = that.shipCost + '';
                     const finalCost = (that.total + that.shipCost) + '';
+                    const phone = that.phone + ''
                     return actions.order.create({
                         intent: "CAPTURE",
                         application_context: {
@@ -148,7 +157,7 @@
                         },
                         purchase_units: [
                             {
-                                description: firstName + " " + lastName,
+                                description: firstName + " " + lastName + ";" + email+ ";" + phone,
                                 amount: {
                                     currency_code: 'RUB',
                                     value: finalCost,

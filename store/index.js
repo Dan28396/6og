@@ -13,7 +13,7 @@ export default new Vuex.Store({
     plugins: [
         createPersistedState({
                 paths: [
-                    "Cart.items", "Cart.finalCart",
+                    "Cart.items", "Cart.finalCart", "Cart.lastItem"
                 ]
             }
         )],

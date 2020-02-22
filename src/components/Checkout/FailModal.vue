@@ -29,15 +29,7 @@
 </script>
 
 <style scoped>
-    .modal-wrap {
-        z-index: 101;
-        background: white;
-        position: fixed;
-        width: 60%;
-        height: 60%;
-        min-height: 300px;
-        min-width: 500px;
-    }
+
 
     .modal-mask {
         position: fixed;
@@ -74,27 +66,27 @@
         transition: all .3s ease;
         font-family: Roboto;
         position: relative;
-        height: 30vw;
         display: flex;
         justify-content: center;
         align-content: center;
         min-height: 250px;
         min-width: 300px;
+        max-width: 550px;
     }
 
     .success__wrap {
         margin: auto;
-        padding: 10px;
+        padding: 20px;
     }
 
     .galochka {
-        width: 40%;
+        width: 35%;
         max-width: 250px;
     }
 
     .success {
         font-family: GT-America;
-        font-size: 1.8vw;
+        font-size: 1.5vw;
         margin: 0;
     }
 
@@ -109,10 +101,14 @@
         display: block;
     }
 
-    @media all and (max-width: 640px) {
+    @media all and (max-width: 800px) {
         .success {
-        font-size: 14px;
+            font-size: 14px;
         }
     }
-
+    @media all and (min-width: 1300px) {
+        .success {
+            font-size: 24px;
+        }
+    }
 </style>

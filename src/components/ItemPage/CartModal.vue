@@ -33,7 +33,7 @@
                 <footer class="cart-wrapper__footer">
                     <p class="cart-footer__ship">Shipping & taxes calculated at checkout</p>
                     <router-link to="/checkout">
-                        <button class="cart-footer__button" @click="finalizeCart">Checkout {{total}}₽</button>
+                        <button class="cart-footer__button" @click="goToCheckout">Checkout {{total}}₽</button>
                     </router-link>
                 </footer>
             </aside>
@@ -72,8 +72,8 @@
             toggleCartModal() {
                 this.$store.commit("Cart/toggleCartModal");
             },
-            finalizeCart() {
-                this.$store.commit("Cart/finalizeCart");
+            goToCheckout() {
+                this.$store.dispatch("Cart/goToCheckout", this.$route.path)
             },
 
         },

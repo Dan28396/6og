@@ -3,16 +3,22 @@
         <section class="checkout" id="style-2">
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
-                    <a @click="$router.back()" class="checkout__return">
+                    <a @click="$router.go(backUrl)" class="checkout__return">
                         <img class="checkout__arrow-img" src="../../../public/checkout/next.svg">
                         Return to item
                     </a>
                 </div>
                 <div class="checkout__section">
                     <h2 class="section-title">Contact information</h2>
-                    <input class="input-wrap__input" placeholder="Email" v-model.trim="$v.email.$model">
-                    <p class="error" v-if="(!$v.email.required) && ($v.email.$dirty)">Field is required.</p>
-                    <p class="error" v-if="!$v.email.email">Email is incorrect.</p>
+                    <div>
+                        <input class="input-wrap__input" placeholder="Email" v-model.trim="$v.email.$model">
+                        <p class="error" v-if="(!$v.email.required) && ($v.email.$dirty)">Field is required.</p>
+                        <p class="error" v-if="!$v.email.email">Email is incorrect.</p>
+                    </div>
+                    <div>
+                        <input class="input-wrap__input" placeholder="Phone" v-model.trim="$v.phone.$model">
+                        <p class="error" v-if="(!$v.phone.required) && ($v.phone.$dirty)">Field is required.</p>
+                    </div>
                 </div>
                 <div class="checkout__section">
                     <h2 class="section-title">Shipping address</h2>
@@ -22,7 +28,8 @@
                             <p class="error" v-if="(!$v.firstName.required) && ($v.firstName.$dirty)">Field is
                                 required.</p>
                         </div>
-                        <div><input class="input-wrap__input" placeholder="Last name" v-model="$v.lastName.$model">
+                        <div>
+                            <input class="input-wrap__input" placeholder="Last name" v-model="$v.lastName.$model">
                             <p class="error" v-if="(!$v.lastName.required) && ($v.lastName.$dirty)">Field is
                                 required.</p>
                         </div>
@@ -106,7 +113,7 @@
     //TODO СДЕЛАТЬ ПРОВЕРКУ НА ПРАВИЛЬНОСТЬ ЗАПОЛНЕНИЯ СТРАНЫ
     import {mapGetters, mapState} from 'vuex'
     import PayPalButton from "@/components/Checkout/PayPalButton";
-    import {required, email} from 'vuelidate/lib/validators'
+    import {email, required} from 'vuelidate/lib/validators'
     import SuccessModal from "@/components/Checkout/SuccessModal";
     import FailModal from "@/components/Checkout/FailModal";
     import YandexKassa from "@/components/Checkout/YandexKassa";
@@ -118,6 +125,9 @@
             email: {
                 required,
                 email
+            },
+            phone:{
+                required
             },
             firstName: {
                 required,
@@ -152,7 +162,8 @@
                 items: state => state.Cart.items,
                 successModal: state => state.Checkout.successModal,
                 failModal: state => state.Checkout.failModal,
-                countries: state => state.Checkout.countries
+                countries: state => state.Checkout.countries,
+                backUrl: state => state.Cart.lastItem
             }),
             email: {
                 get() {
@@ -160,6 +171,14 @@
                 },
                 set(value) {
                     this.$store.commit('Checkout/updateEmail', value)
+                }
+            },
+            phone: {
+                get() {
+                    return this.$store.state.Checkout.phone
+                },
+                set(value) {
+                    this.$store.commit('Checkout/updatePhone', value)
                 }
             },
             firstName: {
@@ -232,7 +251,7 @@
                 }
             }
         },
-        beforeMount(){
+        beforeMount() {
             this.toggleSuccessModal()
         },
     }
