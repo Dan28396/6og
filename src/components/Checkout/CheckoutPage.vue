@@ -3,7 +3,7 @@
         <section class="checkout" id="style-2">
             <div class="checkout__content-wrap">
                 <div class="checkout__section">
-                    <a @click="$router.go(backUrl)" class="checkout__return">
+                    <a @click="$router.push(`${backUrl}`)" class="checkout__return">
                         <img class="checkout__arrow-img" src="../../../public/checkout/next.svg">
                         Return to item
                     </a>
