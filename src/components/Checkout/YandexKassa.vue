@@ -1,6 +1,9 @@
 <template>
-    <button class="yandex-button" @click="postOrder(isInvalid, validate)"><img class="yandex-button__img"
-                                                                     src="../../../public/checkout/yandexcheckout.png">
+    <button class="yandex-button" @click="postOrder(isInvalid, validate)">
+        <span class="yandex-button__wrap">
+            <img class="yandex-button__yandex" src="../../../public/checkout/yandexcheckout.png">
+            <img class="yandex-button__card" src="../../../public/checkout/card.png">
+        </span>
     </button>
 </template>
 
@@ -37,8 +40,18 @@
         filter: brightness(0.95);
     }
 
-    .yandex-button__img {
-        height: 35%;
+    .yandex-button__wrap {
+        height: 100%;
+    }
+
+    .yandex-button__yandex {
+        height: 37%;
+    }
+
+    .yandex-button__card {
+        height: 45%;
+        margin-left: 10px;
+        margin-top: 2px;
     }
 
     @media only screen and (min-width: 75px) {
