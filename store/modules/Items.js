@@ -20,7 +20,8 @@ const state = {
         preview_img: require("../../public/item/6OG FATE T MOONDUST/l_m.gif"),
         name: "6OG FATE T MOONDUST",
         sizeTable: require("../../public/item/t-shirt.svg"),
-        price: 7000,
+        noSalePrice: 7000,
+        price: 4900,
         description: "sʜᴏʀᴛ sʟᴇᴇᴠᴇ ᴄᴏᴛᴛᴏɴ ᴏᴠᴇʀsɪᴢᴇᴅ ᴛ-sʜɪʀᴛ<br>“ғᴀᴛᴇ” ɢʀᴀᴘʜɪᴄs ᴘʀɪɴᴛᴇᴅ ɪɴ ғʀᴏɴᴛ<br><br>NFC ᴄʜɪᴘ ᴀᴘᴘʟɪᴇᴅ ᴀᴛ ʙᴀᴄᴋ<br>AR ɪɴᴛᴇʀᴀᴄᴛᴇᴅ ᴘʀɪɴᴛ<br>92% ᴄᴏᴛᴛᴏɴ 8% ʟʏᴄʀᴀ<br>ᴍᴏᴏɴᴅᴜsᴛ ᴄᴏʟᴏʀ",
         selectedSize: "m",
         oneSize: false
@@ -45,7 +46,8 @@ const state = {
         preview_img: require("../../public/item/Hoodie/Hoodie.gif"),
         name: "6OG SECURE HOODIE BLACK",
         sizeTable: require("../../public/item/hoodie.svg"),
-        price: 11500,
+        noSalePrice: 11500,
+        price: 8050,
         description: "ᴏʙʟᴏɴɢ ғɪᴛ ᴄᴏᴛᴛᴏɴ ʜᴏᴏᴅɪᴇ<br>“sᴇᴄᴜʀᴇ” ɢʀᴀᴘʜɪᴄs ᴘʀɪɴᴛᴇᴅ ʙᴏᴛʜ sɪᴅᴇs<br><br>NFC ᴄʜɪᴘ ᴀᴘᴘʟɪᴇᴅ ᴀᴛ ʙᴀᴄᴋ<br>AR ɪɴᴛᴇʀᴀᴄᴛᴇᴅ ᴘʀɪɴᴛ<br>100% ᴄᴏᴛᴛᴏɴ<br>ʙʟᴀᴄᴋ",
         selectedSize: "m",
         oneSize: false
@@ -70,7 +72,8 @@ const state = {
             preview_img: require("../../public/item/6OG DEPOT T WHITE/l_w.gif"),
             name: "6OG DEPOT T WHITE",
             sizeTable: require("../../public/item/t-shirt.svg"),
-            price: 6500,
+            noSalePrice: 6500,
+            price: 4550,
             description: "sʜᴏʀᴛ sʟᴇᴇᴠᴇ ᴄᴏᴛᴛᴏɴ ᴏᴠᴇʀsɪᴢᴇᴅ ᴛ-sʜɪʀᴛ<br>“ᴅᴇᴘᴏᴛ” ɢʀᴀᴘʜɪᴄs ᴀɴᴅ ʟᴏɢᴏ ᴘʀɪɴᴛᴇᴅ ɪɴ ғʀᴏɴᴛ<br><br>NFC ᴄʜɪᴘ ᴀᴘᴘʟɪᴇᴅ ᴀᴛ ʙᴀᴄᴋ<br>AR ɪɴᴛᴇʀᴀᴄᴛᴇᴅ ᴘʀɪɴᴛ<br>100% ᴄᴏᴛᴛᴏɴ<br>ᴡʜɪᴛᴇ",
             selectedSize: "m",
             oneSize: false
@@ -95,7 +98,8 @@ const state = {
             preview_img: require("../../public/item/6OG DEPOT T FLAMINGO/l_p.gif"),
             name: "6OG DEPOT T FLAMINGO",
             sizeTable: require("../../public/item/t-shirt.svg"),
-            price: 6500,
+            noSalePrice: 6500,
+            price: 4550,
             description: "<span>sʜᴏʀᴛ sʟᴇᴇᴠᴇ ᴄᴏᴛᴛᴏɴ ᴏᴠᴇʀsɪᴢᴇᴅ ᴛ-sʜɪʀᴛ<br>“ᴅᴇᴘᴏᴛ” ɢʀᴀᴘʜɪᴄs ᴀɴᴅ ʟᴏɢᴏ ᴘʀɪɴᴛᴇᴅ ɪɴ ғʀᴏɴᴛ<br><br>NFC ᴄʜɪᴘ ᴀᴘᴘʟɪᴇᴅ ᴀᴛ ʙᴀᴄᴋ<br>AR ɪɴᴛᴇʀᴀᴄᴛᴇᴅ ᴘʀɪɴᴛ<br>92% ᴄᴏᴛᴛᴏɴ 8% ʟʏᴄʀᴀ<br>ғʟᴀᴍɪɴɢᴏ ᴄᴏʟᴏʀ",
             selectedSize: "m",
             oneSize: false
@@ -119,7 +123,8 @@ const state = {
             preview_img: require("../../public/item/6OG DEPOT T BLACK/l_b.gif"),
             name: "6OG DEPOT T BLACK",
             sizeTable: require("../../public/item/t-shirt.svg"),
-            price: 10,
+            noSalePrice: 6500,
+            price: 4550,
             description: "sʜᴏʀᴛ sʟᴇᴇᴠᴇ ᴄᴏᴛᴛᴏɴ ᴏᴠᴇʀsɪᴢᴇᴅ ᴛ-sʜɪʀᴛ<br>“ᴅᴇᴘᴏᴛ” ɢʀᴀᴘʜɪᴄs ᴀɴᴅ ʟᴏɢᴏ ᴘʀɪɴᴛᴇᴅ ɪɴ ғʀᴏɴᴛ<br><br>NFC ᴄʜɪᴘ ᴀᴘᴘʟɪᴇᴅ ᴀᴛ ʙᴀᴄᴋ<br>AR ɪɴᴛᴇʀᴀᴄᴛᴇᴅ ᴘʀɪɴᴛ<br>100% ᴄᴏᴛᴛᴏɴ<br>ʙʟᴀᴄᴋ",
             selectedSize: "m",
             oneSize: false
@@ -136,6 +141,7 @@ const state = {
             preview_img: require('../../public/item/Bag/bag.png'),
             name: "6OG CHEST RIG 0001",
             sizeTable: require("../../public/item/t-shirt.svg"),
+            noSalePrice: 10,
             price: 10,
             description: "COLOR: 013 BLACK<br>COUNTRY: RUSSIA<br>100% WATERPROOF",
             selectedSize: "ONESIZE",

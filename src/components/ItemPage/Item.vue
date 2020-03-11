@@ -9,6 +9,7 @@
                 <div class="first-block">
                     <p class="item-text">{{items[id - 1].name}}</p>
                     <hr>
+                    <p class="item-text" v-if="items[id - 1].noSalePrice > items[id -1].price"><span style="text-decoration: line-through">{{items[id - 1].noSalePrice}}</span>₽</p>
                     <p class="item-text">{{items[id - 1].price}}₽</p>
                     <hr>
                     <p class="item-text" v-if="items[id - 1].oneSize === true"><span
